@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO ON-PAGE AMPUH -->
+    <title>Petualang Pangandaran - Teman Seru Jelajah Destinasimu! | Paket Wisata & Tour Guide</title>
+    <meta name="description" content="Petualang Pangandaran adalah teman seru jelajah destinasimu! Layanan tour guide, body rafting Citumang, Green Canyon, sewa perahu sunset, paket family gathering & camping pantai eksotis.">
+    <meta name="keywords" content="petualang pangandaran, body rafting citumang, sewa perahu sunset, paket family gathering, camping pantai eksotis, wisata pangandaran, body rafting green canyon, tour guide lokal">
+    <meta name="author" content="Petualang Pangandaran">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Petualang Pangandaran | Teman Seru Jelajah Destinasimu!">
+    <meta property="og:description" content="Liburan seru tanpa cemas bersama Petualang Pangandaran! Dapatkan promo paket wisata Citumang, Sunset Boat, Family Gathering & Camping Pantai sekarang.">
+    <!-- img1.jpg: Thumbnail Open Graph / Social Sharing -->
+    <meta property="og:image" content="img3.png">
+    <meta property="og:type" content="website">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts: Fredoka & Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Konfigurasi Tema Warna Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            navy: '#0f2c59',      /* Biru Gelap Logo */
+                            blue: '#1a73e8',      /* Biru Cerah Ombak */
+                            cyan: '#00b4d8',      /* Biru Muda Sky */
+                            red: '#e63946',       /* Merah Ceria */
+                            yellow: '#ffb703',    /* Kuning 'Jelajah' */
+                            green: '#2a9d8f',     /* Hijau Pegunungan */
+                            light: '#f0f8ff'      /* Latar Belakang Segar */
+                        }
+                    },
+                    fontFamily: {
+                        fun: ['Fredoka', 'cursive', 'sans-serif'],
+                        sans: ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+        .font-fun { font-family: 'Fredoka', cursive, sans-serif; }
+        
+        /* img2.jpg: Background Hero Banner Header */
+        .hero-bg {
+            background: linear-gradient(180deg, rgba(15, 44, 89, 0.75) 0%, rgba(15, 44, 89, 0.90) 100%), 
+                        url('img2.jpg'), 
+                        linear-gradient(135deg, #0f2c59 0%, #1a73e8 100%);
+            background-size: cover;
+            background-position: center;
+        }
+
+        .wave-bottom {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23ffffff' fill-opacity='1' d='M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,224C672,245,768,267,864,250.7C960,235,1056,181,1152,165.3C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .card-hover { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .card-hover:hover { transform: translateY(-8px); }
+
+        .badge-pop {
+            box-shadow: 0 4px 15px rgba(230, 57, 70, 0.4);
+        }
+
+        .break-word-custom {
+            word-break: break-word;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased overflow-x-hidden">
+
+    <!-- BANNER PEMBERITAHUAN ATAS -->
+    <div id="top-banner" class="bg-brand-yellow text-brand-navy py-2 px-4 text-center font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-sm fixed top-0 w-full z-50 h-9">
+        <i class="fa-solid fa-sun animate-spin" style="animation-duration: 8s;"></i>
+        <span class="truncate">PROMO LIBURAN SERU: Diskon Paket Family Gathering & Camping s/d 20%!</span>
+        <a href="https://wa.me/6285780085291?text=Halo%20Petualang%20Pangandaran,%20saya%20mau%20tanya%20promo%20liburan" class="underline font-extrabold hover:text-brand-red ml-1 whitespace-nowrap">Klaim Promo <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+
+    <!-- NAVBAR HEADER -->
+    <nav id="navbar" class="bg-white/95 backdrop-blur-md shadow-md fixed w-full z-40 top-9 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                
+                <!-- DUAL LOGO NAVBAR (Logo Kab. Pangandaran & Logo Petualang Pangandaran) -->
+                <a href="#" class="flex items-center gap-2 sm:gap-3 group py-2" aria-label="Beranda Petualang Pangandaran">
+                    <!-- Logo 1: Kabupaten Pangandaran -->
+                    <img src="logo-pangandaran.png" 
+                         alt="Logo Kab. Pangandaran" 
+                         class="h-10 sm:h-12 w-auto object-contain group-hover:scale-105 transition duration-300"
+                         onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Lambang_Kabupaten_Pangandaran.png/480px-Lambang_Kabupaten_Pangandaran.png';">
+                    
+                    <!-- Garis Pemisah Visual -->
+                    <div class="h-8 w-[1px] bg-gray-300 mx-0.5 sm:mx-1"></div>
+
+                    <!-- Logo 2: Brand Utama (img3.png) -->
+                    <img src="img3.png" 
+                         alt="Logo Petualang Pangandaran" 
+                         class="h-12 sm:h-16 w-auto object-contain group-hover:scale-105 transition duration-300"
+                         onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center gap-2\'><div class=\'w-11 h-11 bg-brand-red rounded-2xl flex items-center justify-center text-white font-fun font-bold text-xl shadow\'>PP</div><div><span class=\'font-fun font-bold text-lg sm:text-2xl text-brand-navy leading-none block\'>PETUALANG <span class=\'text-brand-red\'>PANGANDARAN</span></span><span class=\'text-[10px] font-bold text-brand-yellow bg-brand-navy px-1.5 py-0.5 rounded tracking-wider block mt-0.5\'>TOUR & TRAVEL</span></div></div>';">
+                </a>
+
+                <!-- MENU DESKTOP -->
+                <div class="hidden md:flex space-x-6 lg:space-x-8 items-center font-semibold text-gray-700">
+                    <a href="#" class="text-brand-red font-bold hover:text-brand-navy transition">Beranda</a>
+                    <a href="#destinasi" class="hover:text-brand-red transition">Aktivitas Hits</a>
+                    <a href="#paket" class="hover:text-brand-red transition">Paket & Camping</a>
+                    <a href="#rekening" class="hover:text-brand-red transition">Pembayaran</a>
+                    <a href="#keunggulan" class="hover:text-brand-red transition">Kenapa Kami?</a>
+                    <a href="#testimoni" class="hover:text-brand-red transition">Testimoni</a>
+                    
+                    <a href="https://wa.me/6285780085291" target="_blank" rel="noopener noreferrer"
+                       class="bg-brand-red text-white px-6 py-2.5 rounded-full font-fun font-bold text-base hover:bg-red-600 transition shadow-lg badge-pop flex items-center gap-2 transform hover:-translate-y-0.5">
+                        <i class="fa-brands fa-whatsapp text-xl"></i> Tanya Petualang!
+                    </a>
+                </div>
+
+                <!-- HAMBURGER MENU MOBILE -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-brand-navy focus:outline-none text-3xl p-2" aria-label="Buka Menu Navigasi">
+                        <i id="menu-icon" class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MENU MOBILE -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 shadow-xl">
+            <div class="px-4 pt-3 pb-6 space-y-3 font-semibold">
+                <a href="#" class="block px-3 py-2 text-brand-red font-bold bg-red-50 rounded-lg">Beranda</a>
+                <a href="#destinasi" class="block px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">Aktivitas Hits</a>
+                <a href="#paket" class="block px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">Paket & Camping</a>
+                <a href="#rekening" class="block px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">Informasi Pembayaran</a>
+                <a href="#keunggulan" class="block px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">Kenapa Kami?</a>
+                <a href="#testimoni" class="block px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">Testimoni</a>
+                <a href="https://wa.me/6285780085291" target="_blank" rel="noopener noreferrer" class="block text-center bg-brand-red text-white px-4 py-3 rounded-xl font-fun font-bold shadow-md mt-4">
+                    <i class="fa-brands fa-whatsapp text-lg mr-1"></i> Hubungi WhatsApp
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION TROPIS & CERIA (Background img2.jpg) -->
+    <header class="hero-bg min-h-screen relative flex items-center justify-center pt-36 pb-20">
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto mt-4">
+            
+            <!-- BADGE SLOGAN -->
+            <div class="inline-flex items-center gap-2 py-2 px-5 rounded-full bg-white/20 backdrop-blur-md border border-white/40 text-brand-yellow font-fun font-bold text-sm sm:text-lg mb-6 shadow-lg animate-bounce">
+                <i class="fa-solid fa-compass text-brand-yellow"></i>
+                <span>Teman Seru Jelajah Destinasimu!</span>
+            </div>
+
+            <!-- JUDUL UTAMA -->
+            <h1 class="text-3xl sm:text-5xl md:text-7xl font-fun font-bold text-white mb-6 leading-tight drop-shadow-md break-word-custom">
+                Eksplor Wisata Alam <br class="hidden sm:block">
+                <span class="text-brand-yellow underline decoration-brand-red decoration-wavy">Tanpa Ribet</span> & Full Senyum!
+            </h1>
+
+            <p class="text-sm sm:text-xl text-gray-100 mb-10 max-w-2xl mx-auto font-normal leading-relaxed drop-shadow">
+                Siap seru-seruan <b>Body Rafting Citumang</b>, santai di <b>Sewa Perahu Sunset</b>, keseruan <b>Family Gathering</b>, hingga <b>Camping Pantai Eksotis</b>? Serahkan pada <b>Petualang Pangandaran</b>!
+            </p>
+            
+            <!-- TOMBOL UTAMA CTA -->
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6">
+                <a href="#destinasi" class="w-full sm:w-auto bg-brand-yellow text-brand-navy font-fun font-bold text-lg sm:text-xl px-9 py-4 rounded-full hover:bg-yellow-400 transition shadow-xl hover:scale-105 flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-map-location-dot"></i> Pilih Aktivitas Seru
+                </a>
+                <a href="https://wa.me/6285780085291" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto bg-white/10 backdrop-blur-md border-2 border-white/60 text-white font-fun font-bold text-lg sm:text-xl px-8 py-4 rounded-full hover:bg-white/20 transition flex items-center justify-center gap-3">
+                    <i class="fa-brands fa-whatsapp text-green-400 text-2xl"></i> Chat Pemandu
+                </a>
+            </div>
+
+            <!-- HIGHLIGHT ELEMEN BENTUK IKON LOGO -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mt-14 max-w-4xl mx-auto">
+                <div class="bg-white/10 backdrop-blur-md p-3 sm:p-4 rounded-2xl border border-white/20 text-white flex items-center gap-3">
+                    <i class="fa-solid fa-water-ladder text-brand-cyan text-2xl sm:text-3xl"></i>
+                    <div class="text-left"><p class="font-fun font-bold text-xs sm:text-sm">Rafting Citumang</p><p class="text-[10px] sm:text-xs text-gray-200">Sungai & Cave Jumping</p></div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md p-3 sm:p-4 rounded-2xl border border-white/20 text-white flex items-center gap-3">
+                    <i class="fa-solid fa-ship text-brand-yellow text-2xl sm:text-3xl"></i>
+                    <div class="text-left"><p class="font-fun font-bold text-xs sm:text-sm">Sewa Perahu</p><p class="text-[10px] sm:text-xs text-gray-200">Sunset Pantai Cagar Alam</p></div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md p-3 sm:p-4 rounded-2xl border border-white/20 text-white flex items-center gap-3">
+                    <i class="fa-solid fa-people-group text-brand-red text-2xl sm:text-3xl"></i>
+                    <div class="text-left"><p class="font-fun font-bold text-xs sm:text-sm">Family Gathering</p><p class="text-[10px] sm:text-xs text-gray-200">Fun Games & Barbeque</p></div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md p-3 sm:p-4 rounded-2xl border border-white/20 text-white flex items-center gap-3">
+                    <i class="fa-solid fa-campground text-brand-green text-2xl sm:text-3xl"></i>
+                    <div class="text-left"><p class="font-fun font-bold text-xs sm:text-sm">Camping Pantai</p><p class="text-[10px] sm:text-xs text-gray-200">Api Unggun Eksotis</p></div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- DEKORASI OMBAK BAWAH -->
+        <div class="absolute bottom-0 left-0 right-0 h-16 sm:h-24 wave-bottom"></div>
+    </header>
+
+    <!-- SECTION DESTINASI POPULER (AKTIVITAS HITS) -->
+    <section id="destinasi" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-14">
+                <span class="text-brand-red font-fun font-bold text-base sm:text-lg uppercase tracking-wider">Aktivitas Pilihan Petualang</span>
+                <h2 class="text-3xl sm:text-5xl font-fun font-bold text-brand-navy mt-1">Destinasi & Aktivitas Terfavorit</h2>
+                <div class="w-24 h-1.5 bg-brand-yellow mx-auto rounded-full mt-3"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- KARTU 1: BODY RAFTING CITUMANG (img4.jpg) -->
+                <div class="bg-white rounded-3xl overflow-hidden card-hover border-2 border-gray-100 shadow-lg flex flex-col">
+                    <div class="relative h-64 overflow-hidden bg-gradient-to-br from-teal-400 to-blue-600">
+                        <img src="img4.jpg" 
+                             alt="Body Rafting Citumang (img4.jpg)" 
+                             class="w-full h-full object-cover"
+                             onerror="this.onerror=null; this.parentElement.insertAdjacentHTML('afterbegin', '<div class=\'w-full h-full flex flex-col items-center justify-center text-white p-4 text-center bg-gradient-to-br from-brand-cyan to-brand-blue\'><i class=\'fa-solid fa-water-ladder text-5xl mb-2 opacity-80\'></i><span class=\'font-fun font-bold text-lg\'>img4.jpg</span><span class=\'text-xs opacity-90\'>Thumbnail Body Rafting Citumang</span></div>'); this.style.display='none';">
+                        <span class="absolute top-4 left-4 bg-brand-red text-white font-fun font-bold px-4 py-1 rounded-full text-xs shadow-md z-10">
+                            <i class="fa-solid fa-fire mr-1"></i> Paling Populer!
+                        </span>
+                        <div class="absolute bottom-3 right-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-brand-navy shadow z-10">
+                            <i class="fa-solid fa-star text-brand-yellow"></i> 4.9 (1.5k Ulasan)
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-2xl font-fun font-bold text-brand-navy">Body Rafting Citumang</h3>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-4 leading-relaxed">Nikmati sensasi berenang di air sungai hijau kebiruan yang jernih, masuk goa alami, cave jumping, hingga terapi ikan alami!</p>
+                        </div>
+                        <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+                            <div>
+                                <p class="text-xs text-gray-400">Mulai Dari</p>
+                                <p class="text-xl sm:text-2xl font-fun font-bold text-brand-red">Rp 85.000 <span class="text-xs text-gray-500 font-normal">/orang</span></p>
+                            </div>
+                            <a href="https://wa.me/6285780085291?text=Halo%20Petualang%20Pangandaran,%20mau%20pesan%20Body%20Rafting%20Citumang" target="_blank" rel="noopener noreferrer" class="bg-brand-blue hover:bg-blue-700 text-white font-fun font-bold px-5 py-2.5 rounded-full text-sm shadow transition">
+                                Pesan <i class="fa-solid fa-paper-plane ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- KARTU 2: SEWA PERAHU SUNSET (img5.jpg) -->
+                <div class="bg-white rounded-3xl overflow-hidden card-hover border-2 border-gray-100 shadow-lg flex flex-col">
+                    <div class="relative h-64 overflow-hidden bg-gradient-to-br from-amber-400 to-orange-500">
+                        <img src="img5.jpg" 
+                             alt="Sewa Perahu Sunset (img5.jpg)" 
+                             class="w-full h-full object-cover"
+                             onerror="this.onerror=null; this.parentElement.insertAdjacentHTML('afterbegin', '<div class=\'w-full h-full flex flex-col items-center justify-center text-white p-4 text-center bg-gradient-to-br from-brand-yellow to-orange-500\'><i class=\'fa-solid fa-ship text-5xl mb-2 opacity-80\'></i><span class=\'font-fun font-bold text-lg\'>img5.jpg</span><span class=\'text-xs opacity-90\'>Thumbnail Sewa Perahu Sunset</span></div>'); this.style.display='none';">
+                        <span class="absolute top-4 left-4 bg-brand-yellow text-brand-navy font-fun font-bold px-4 py-1 rounded-full text-xs shadow-md z-10">
+                            <i class="fa-solid fa-sun mr-1"></i> Momen Rileks
+                        </span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-2xl font-fun font-bold text-brand-navy">Sewa Perahu Sunset</h3>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-4 leading-relaxed">Jelajahi perairan cagar alam, pasir putih, hingga menyaksikan pemandangan matahari terbenam nan eksotis dari atas perahu wisata.</p>
+                        </div>
+                        <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+                            <div>
+                                <p class="text-xs text-gray-400">Mulai Dari</p>
+                                <p class="text-xl sm:text-2xl font-fun font-bold text-brand-red">Rp 150.000 <span class="text-xs text-gray-500 font-normal">/perahu</span></p>
+                            </div>
+                            <a href="https://wa.me/6285780085291?text=Halo%20Petualang%20Pangandaran,%20mau%20pesan%20Sewa%20Perahu%20Sunset" target="_blank" rel="noopener noreferrer" class="bg-brand-blue hover:bg-blue-700 text-white font-fun font-bold px-5 py-2.5 rounded-full text-sm shadow transition">
+                                Pesan <i class="fa-solid fa-paper-plane ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- KARTU 3: BODY RAFTING GREEN CANYON (img6.jpg) -->
+                <div class="bg-white rounded-3xl overflow-hidden card-hover border-2 border-gray-100 shadow-lg flex flex-col">
+                    <div class="relative h-64 overflow-hidden bg-gradient-to-br from-emerald-500 to-teal-700">
+                        <img src="img6.jpg" 
+                             alt="Body Rafting Green Canyon (img6.jpg)" 
+                             class="w-full h-full object-cover"
+                             onerror="this.onerror=null; this.parentElement.insertAdjacentHTML('afterbegin', '<div class=\'w-full h-full flex flex-col items-center justify-center text-white p-4 text-center bg-gradient-to-br from-brand-green to-teal-800\'><i class=\'fa-solid fa-mountain text-5xl mb-2 opacity-80\'></i><span class=\'font-fun font-bold text-lg\'>img6.jpg</span><span class=\'text-xs opacity-90\'>Thumbnail Body Rafting Green Canyon</span></div>'); this.style.display='none';">
+                        <span class="absolute top-4 left-4 bg-brand-green text-white font-fun font-bold px-4 py-1 rounded-full text-xs shadow-md z-10">
+                            <i class="fa-solid fa-mountain mr-1"></i> Ngarai Eksotis
+                        </span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-2xl font-fun font-bold text-brand-navy">Body Rafting Green Canyon</h3>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-4 leading-relaxed">Susuri tebing ngarai megah dengan perahu dan renang arus sungai lengkap dengan helm, pelampung, & pemandu penyelamat profesional.</p>
+                        </div>
+                        <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+                            <div>
+                                <p class="text-xs text-gray-400">Mulai Dari</p>
+                                <p class="text-xl sm:text-2xl font-fun font-bold text-brand-red">Rp 200.000 <span class="text-xs text-gray-500 font-normal">/orang</span></p>
+                            </div>
+                            <a href="https://wa.me/6285780085291?text=Halo%20Petualang%20Pangandaran,%20mau%20pesan%20Green%20Canyon" target="_blank" rel="noopener noreferrer" class="bg-brand-blue hover:bg-blue-700 text-white font-fun font-bold px-5 py-2.5 rounded-full text-sm shadow transition">
+                                Pesan <i class="fa-solid fa-paper-plane ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION PAKET LENGKAP & CAMPING -->
+    <section id="paket" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-14">
+                <span class="text-brand-red font-fun font-bold text-base sm:text-lg uppercase tracking-wider">Pilihan Rombongan & Komunitas</span>
+                <h2 class="text-3xl sm:text-5xl font-fun font-bold text-brand-navy mt-1">Paket Gathering & Camping</h2>
+                <div class="w-24 h-1.5 bg-brand-yellow mx-auto rounded-full mt-3"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- PAKET FAMILY GATHERING -->
+                <div class="bg-white rounded-3xl p-8 border-2 border-brand-yellow/60 shadow-md relative overflow-hidden flex flex-col justify-between">
+                    <span class="absolute top-0 right-0 bg-brand-yellow text-brand-navy font-fun font-bold text-xs px-4 py-1.5 rounded-bl-2xl">FAVORIT KANTOR & KELUARGA</span>
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-yellow-100 text-brand-navy flex items-center justify-center text-2xl mb-4">
+                            <i class="fa-solid fa-people-group"></i>
+                        </div>
+                        <h3 class="text-2xl sm:text-3xl font-fun font-bold text-brand-navy mb-2">Paket Family Gathering</h3>
+                        <p class="text-gray-500 text-sm mb-6">Paket lengkap khusus rombongan keluarga besar, instansi, atau reuni kawan lama.</p>
+                        <ul class="space-y-3 mb-8 text-sm text-gray-600">
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-green"></i> Fun Games & Master Games (Ice Breaking)</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-green"></i> Pilihan Aktivitas: Body Rafting Citumang / Perahu Sunset</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-green"></i> Prasmanan Khas Sunda & Barbeque Malam</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-green"></i> Sound System, Spanduk Acara, & Fotografer</li>
+                        </ul>
+                    </div>
+                    <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                        <div>
+                            <p class="text-xs text-gray-400">Harga Rombongan</p>
+                            <span class="text-2xl font-fun font-bold text-brand-red">Rp 275.000 <span class="text-xs text-gray-500 font-normal">/pax</span></span>
+                        </div>
+                        <a href="https://wa.me/6285780085291?text=Halo%20Petualang%20Pangandaran,%20saya%20mau%20tanya%20Paket%20Family%20Gathering" target="_blank" rel="noopener noreferrer" class="bg-brand-red hover:bg-red-600 text-white font-fun font-bold px-6 py-3 rounded-full text-sm shadow transition">Pesan Paket</a>
+                    </div>
+                </div>
+
+                <!-- PAKET CAMPING PANTAI EKSOTIS -->
+                <div class="bg-white rounded-3xl p-8 border-2 border-brand-green/40 shadow-md relative overflow-hidden flex flex-col justify-between">
+                    <span class="absolute top-0 right-0 bg-brand-green text-white font-fun font-bold text-xs px-4 py-1.5 rounded-bl-2xl">PENCINTA ALAM</span>
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-green-100 text-brand-green flex items-center justify-center text-2xl mb-4">
+                            <i class="fa-solid fa-campground"></i>
+                        </div>
+                        <h3 class="text-2xl sm:text-3xl font-fun font-bold text-brand-navy mb-2">Camping Pantai Eksotis</h3>
+                        <p class="text-gray-500 text-sm mb-6">Sensasi menginap di alam terbuka pinggir pantai dengan fasilitas lengkap tanpa repot.</p>
+                        <ul class="space-y-3 mb-8 text-sm text-gray-600">
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-green"></i> Tenda Dome Waterproof, Matras & Sleeping Bag</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-green"></i> Api Unggun Malam & Jagung/Ikan Bakar</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-green"></i> Toilet & Kamar Mandi Bersih Terdekat</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-green"></i> Pemandu & Keamanan Camp 24 Jam</li>
+                        </ul>
+                    </div>
+                    <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                        <div>
+                            <p class="text-xs text-gray-400">Lengkap Peralatan</p>
+                            <span class="text-2xl font-fun font-bold text-brand-red">Rp 175.000 <span class="text-xs text-gray-500 font-normal">/orang</span></span>
+                        </div>
+                        <a href="https://wa.me/6285780085291?text=Halo%20Petualang%20Pangandaran,%20saya%20mau%20tanya%20Paket%20Camping%20Pantai" target="_blank" rel="noopener noreferrer" class="bg-brand-navy hover:bg-blue-900 text-white font-fun font-bold px-6 py-3 rounded-full text-sm shadow transition">Pesan Camping</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION INFORMASI REKENING PEMBAYARAN -->
+    <section id="rekening" class="py-16 bg-white border-y border-gray-200">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gradient-to-br from-brand-navy to-brand-blue rounded-3xl p-8 sm:p-10 text-white shadow-2xl relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 opacity-10 text-white">
+                    <i class="fa-solid fa-vault text-[180px]"></i>
+                </div>
+                
+                <div class="relative z-10">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-white/20">
+                        <div>
+                            <span class="bg-brand-yellow text-brand-navy font-fun font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">
+                                <i class="fa-solid fa-shield-halved mr-1"></i> Pembayaran Resmi & Terpercaya
+                            </span>
+                            <h2 class="text-2xl sm:text-4xl font-fun font-bold mt-3">Informasi Rekening Reservasi</h2>
+                            <p class="text-gray-200 text-sm mt-1">Gunakan nomor rekening resmi di bawah ini untuk konfirmasi DP atau pelunasan paket tour.</p>
+                        </div>
+                        <div class="flex-shrink-0">
+                            <div class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center text-3xl text-brand-yellow border border-white/20">
+                                <i class="fa-solid fa-building-columns"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                        <!-- Kartu Rekening -->
+                        <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 flex flex-col justify-between">
+                            <div>
+                                <p class="text-xs text-brand-yellow font-bold uppercase tracking-wider mb-1">Nomor Rekening / Transfer Bank</p>
+                                <p id="rek-number" class="text-3xl font-fun font-bold tracking-wider text-white select-all">901945335968</p>
+                                <p class="text-sm text-gray-200 mt-2"><i class="fa-solid fa-user-check text-green-400 mr-1"></i> atas nama <b>Syadad Nabil Mudzafar</b></p>
+                            </div>
+                            <button onclick="copyRekening()" class="mt-4 w-full bg-brand-yellow hover:bg-yellow-400 text-brand-navy font-fun font-bold py-2.5 px-4 rounded-xl text-sm transition flex items-center justify-center gap-2">
+                                <i id="copy-icon" class="fa-regular fa-copy"></i> <span id="copy-text">Salin Nomor Rekening</span>
+                            </button>
+                        </div>
+
+                        <!-- Kartu Kontak Confirm -->
+                        <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 flex flex-col justify-between">
+                            <div>
+                                <p class="text-xs text-brand-yellow font-bold uppercase tracking-wider mb-1">Konfirmasi Pembayaran WhatsApp</p>
+                                <p class="text-2xl font-fun font-bold text-white">0857-8008-5291</p>
+                                <p class="text-sm text-gray-200 mt-2"><i class="fa-solid fa-clock text-brand-yellow mr-1"></i> Layanan CS 24/7 Fast Response</p>
+                            </div>
+                            <a href="https://wa.me/6285780085291?text=Halo%20Petualang%20Pangandaran,%20saya%20sudah%20transfer%20ke%20rekening%20901945335968%20a.n.%20Syadad%20Nabil%20Mudzafar" 
+                               target="_blank" rel="noopener noreferrer" 
+                               class="mt-4 w-full bg-green-500 hover:bg-green-600 text-white font-fun font-bold py-2.5 px-4 rounded-xl text-sm transition flex items-center justify-center gap-2">
+                                <i class="fa-brands fa-whatsapp text-lg"></i> Kirim Bukti Transfer
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION WHY US (img7.jpg) -->
+    <section id="keunggulan" class="py-20 bg-brand-light relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                
+                <!-- Gambar/Logo Tampilan (img7.jpg) -->
+                <div class="lg:w-1/2 text-center">
+                    <div class="relative inline-block">
+                        <div class="absolute -inset-4 bg-brand-yellow rounded-full blur-xl opacity-40 animate-pulse"></div>
+                        <img src="img7.png" 
+                             alt="Logo Petualang Pangandaran Maskot (img7.jpg)" 
+                             class="relative z-10 max-w-xs sm:max-w-md mx-auto drop-shadow-2xl rounded-3xl"
+                             onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'bg-white p-8 rounded-3xl shadow-2xl border-4 border-brand-yellow text-center relative z-10\'><div class=\'w-24 h-24 bg-brand-red rounded-full flex items-center justify-center text-white font-fun font-bold text-4xl mx-auto mb-4 shadow-lg\'>PP</div><h3 class=\'font-fun font-bold text-3xl text-brand-navy\'>PETUALANG PANGANDARAN</h3><span class=\'text-xs font-bold text-gray-400 block mt-1\'>Kode File: img7.jpg</span><p class=\'text-brand-yellow font-fun font-bold bg-brand-navy px-4 py-1.5 rounded-full text-sm mt-3 inline-block\'>Teman Seru Jelajah Destinasimu!</p></div>';">
+                    </div>
+                </div>
+
+                <!-- Konten Penjelasan -->
+                <div class="lg:w-1/2">
+                    <span class="text-brand-red font-fun font-bold text-lg">Kenapa Harus Pilih Petualang Pangandaran?</span>
+                    <h2 class="text-3xl sm:text-5xl font-fun font-bold text-brand-navy mt-2 mb-6">Liburan Seru Tanpa Khawatir, Serasa Sama Sahabat Sendiri!</h2>
+                    
+                    <p class="text-gray-600 leading-relaxed mb-8">
+                        <b>Petualang Pangandaran</b> berkomitmen bukan sekadar jadi agen travel, tapi jadi kawan perjalanan terbaik yang menjaga keselamatan dan keceriaan Anda sepanjang menjelajahi keindahan alam Pangandaran.
+                    </p>
+
+                    <div class="space-y-5">
+                        <div class="flex items-start gap-4 p-4 bg-white rounded-2xl shadow-sm border border-gray-100">
+                            <div class="w-12 h-12 rounded-xl bg-red-100 text-brand-red flex items-center justify-center text-2xl flex-shrink-0">
+                                <i class="fa-solid fa-heart"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-fun font-bold text-lg text-brand-navy">Ramah & Berpengalaman</h4>
+                                <p class="text-sm text-gray-500">Pemandu lokal kami asli daerah setempat yang tahu persis spot tersembunyi tercantik!</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 bg-white rounded-2xl shadow-sm border border-gray-100">
+                            <div class="w-12 h-12 rounded-xl bg-yellow-100 text-brand-navy flex items-center justify-center text-2xl flex-shrink-0">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-fun font-bold text-lg text-brand-navy">Peralatan Safety Lengkap</h4>
+                                <p class="text-sm text-gray-500">Semua aktivitas air, rafting & camping dilengkapi perlengkapan standar keamanan teruji.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 bg-white rounded-2xl shadow-sm border border-gray-100">
+                            <div class="w-12 h-12 rounded-xl bg-blue-100 text-brand-blue flex items-center justify-center text-2xl flex-shrink-0">
+                                <i class="fa-solid fa-tags"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-fun font-bold text-lg text-brand-navy">Harga Hemat Tanpa Biaya Tersembunyi</h4>
+                                <p class="text-sm text-gray-500">Transparan dari awal! Semua sesuai kesepakatan tanpa ada pungutan tak terduga.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONI SECTION -->
+    <section id="testimoni" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-14">
+                <span class="text-brand-red font-fun font-bold text-base sm:text-lg uppercase tracking-wider">Kata Mereka</span>
+                <h2 class="text-3xl sm:text-5xl font-fun font-bold text-brand-navy mt-1">Ulasan Wisatawan</h2>
+                <div class="w-24 h-1.5 bg-brand-yellow mx-auto rounded-full mt-3"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-brand-light p-6 rounded-3xl border border-gray-100 shadow-sm flex flex-col justify-between">
+                    <p class="text-gray-600 text-sm italic mb-4">"Body Rafting Citumang bareng Petualang Pangandaran mantap banget! Airnya jernih, pemandunya seru dan jagain kami dari awal sampe akhir."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-brand-yellow rounded-full font-fun font-bold flex items-center justify-center text-brand-navy">A</div>
+                        <div>
+                            <h5 class="font-fun font-bold text-brand-navy text-sm">Andi Setiadi</h5>
+                            <span class="text-xs text-gray-400">Bandung</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-brand-light p-6 rounded-3xl border border-gray-100 shadow-sm flex flex-col justify-between">
+                    <p class="text-gray-600 text-sm italic mb-4">"Acara Family Gathering kantor kami 40 orang sukses besar. Games-nya rame, makanannya enak, dan Sewa Perahu Sunset-nya romantis banget."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-brand-red rounded-full font-fun font-bold flex items-center justify-center text-white">R</div>
+                        <div>
+                            <h5 class="font-fun font-bold text-brand-navy text-sm">Rina Fitriani</h5>
+                            <span class="text-xs text-gray-400">Jakarta</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-brand-light p-6 rounded-3xl border border-gray-100 shadow-sm flex flex-col justify-between">
+                    <p class="text-gray-600 text-sm italic mb-4">"Camping Pantai Eksotis-nya seru parah! Tenda bersih, api unggun siap, dan momen malamnya syahdu banget bareng teman-teman."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-brand-green rounded-full font-fun font-bold flex items-center justify-center text-white">D</div>
+                        <div>
+                            <h5 class="font-fun font-bold text-brand-navy text-sm">Dedi Kurniawan</h5>
+                            <span class="text-xs text-gray-400">Bekasi</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BANNER AJAKAN CHAT / CTA KHUSUS -->
+    <section class="py-16 bg-gradient-to-r from-brand-navy via-brand-blue to-brand-navy text-white text-center relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-4 relative z-10">
+            <h2 class="text-3xl sm:text-5xl font-fun font-bold mb-4">Punya Rencana Liburan Sendiri?</h2>
+            <p class="text-gray-200 text-base sm:text-lg mb-8">Konsultasikan jumlah rombongan, request destinasi, atau penyesuaian budget dengan tim Petualang Pangandaran secara GRATIS!</p>
+            <a href="https://wa.me/6285780085291?text=Halo%20Petualang%20Pangandaran,%20saya%20mau%20custom%20paket%20wisata" 
+               target="_blank" rel="noopener noreferrer"
+               class="inline-flex items-center gap-3 bg-brand-yellow text-brand-navy font-fun font-bold text-lg sm:text-xl px-8 sm:px-10 py-4 rounded-full hover:bg-yellow-400 transition shadow-2xl hover:scale-105">
+                <i class="fa-brands fa-whatsapp text-2xl text-green-700"></i> Hubungi WhatsApp 085780085291
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER LENGKAP -->
+    <footer class="bg-brand-navy text-white pt-16 pb-8 border-t-8 border-brand-yellow">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-gray-800">
+                
+                <!-- Kolom Logo Footer (img8.jpg) -->
+                <div class="md:col-span-1">
+                    <div class="flex items-center gap-2 mb-4">
+                        <img src="img8.jpg" 
+                             alt="Petualang Pangandaran Footer Logo (img8.jpg)" 
+                             class="h-16 w-auto bg-white/10 p-2 rounded-2xl backdrop-blur-sm object-contain"
+                             onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'font-fun font-bold text-xl text-white\'>PETUALANG <span class=\'text-brand-red\'>PANGANDARAN</span></div>';">
+                    </div>
+                    <p class="text-gray-300 text-sm leading-relaxed mb-6">
+                        <b>Petualang Pangandaran</b> adalah penyedia jasa trip & wisata alam terpercaya. Nikmati momen seru jelajah destinasi impianmu bersama kami!
+                    </p>
+                    <div class="flex space-x-3">
+                        <a href="#" aria-label="Instagram Petualang Pangandaran" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-red transition"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" aria-label="TikTok Petualang Pangandaran" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-red transition"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="#" aria-label="Facebook Petualang Pangandaran" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-red transition"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#" aria-label="YouTube Petualang Pangandaran" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-red transition"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <!-- Navigasi Cepat -->
+                <div>
+                    <h4 class="font-fun font-bold text-lg text-brand-yellow mb-4">Aktivitas Seru</h4>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li><a href="#destinasi" class="hover:text-brand-yellow transition">Body Rafting Citumang</a></li>
+                        <li><a href="#destinasi" class="hover:text-brand-yellow transition">Sewa Perahu Sunset</a></li>
+                        <li><a href="#destinasi" class="hover:text-brand-yellow transition">Body Rafting Green Canyon</a></li>
+                        <li><a href="#paket" class="hover:text-brand-yellow transition">Paket Family Gathering</a></li>
+                        <li><a href="#paket" class="hover:text-brand-yellow transition">Camping Pantai Eksotis</a></li>
+                    </ul>
+                </div>
+
+                <!-- Informasi Wisata & Pembayaran -->
+                <div>
+                    <h4 class="font-fun font-bold text-lg text-brand-yellow mb-4">Info Pembayaran</h4>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li><a href="#rekening" class="hover:text-brand-yellow transition font-semibold text-white">Rekening: 901945335968</a></li>
+                        <li><a href="#rekening" class="hover:text-brand-yellow transition">a.n. Syadad Nabil Mudzafar</a></li>
+                        <li><a href="#" class="hover:text-brand-yellow transition">Harga Tiket Masuk 2026</a></li>
+                        <li><a href="#" class="hover:text-brand-yellow transition">Tips Safety Body Rafting</a></li>
+                        <li><a href="#" class="hover:text-brand-yellow transition">Syarat & Ketentuan DP</a></li>
+                    </ul>
+                </div>
+
+                <!-- Kontak Reservasi & Alamat Basecamp -->
+                <div>
+                    <h4 class="font-fun font-bold text-lg text-brand-yellow mb-4">Basecamp & Kontak</h4>
+                    <div class="space-y-3 text-sm text-gray-300">
+                        <p class="flex items-start gap-2">
+                            <i class="fa-solid fa-location-dot text-brand-red mt-1 flex-shrink-0"></i>
+                            <span>Dusun cikanyere, RT./Rw/RW.01/07, Parakanmanggu, Kec. Parigi, Kab. Pangandaran, Jawa Barat 46393</span>
+                        </p>
+                        <p class="flex items-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-green-400 text-base flex-shrink-0"></i>
+                            <a href="https://wa.me/6285780085291" class="hover:underline font-bold text-white">0857-8008-5291</a>
+                        </p>
+                        <p class="flex items-center gap-2">
+                            <i class="fa-solid fa-credit-card text-brand-yellow flex-shrink-0"></i>
+                            <span>901945335968 (Syadad Nabil Mudzafar)</span>
+                        </p>
+                        <p class="flex items-center gap-2">
+                            <i class="fa-regular fa-envelope text-brand-yellow flex-shrink-0"></i>
+                            <span>halo@petualangpangandaran.com</span>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Copyright -->
+            <div class="pt-8 text-center text-xs text-gray-400">
+                <p>&copy; 2026 <b>Petualang Pangandaran</b> - Teman Seru Jelajah Destinasimu. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- TOMBOL WA MELAYANG DI SISI KANAN BAWAH -->
+    <a href="https://wa.me/6285780085291?text=Halo%20Petualang%20Pangandaran,%20saya%20mau%20tanya%20paket%20wisata" 
+       target="_blank" rel="noopener noreferrer"
+       class="fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition duration-300 z-50 flex items-center justify-center animate-bounce"
+       title="Chat WhatsApp Petualang Pangandaran (085780085291)"
+       aria-label="Hubungi WhatsApp Petualang Pangandaran">
+        <i class="fa-brands fa-whatsapp text-3xl"></i>
+    </a>
+
+    <!-- SCRIPT TAMPILAN INTERAKTIF -->
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const navbar = document.getElementById('navbar');
+
+        // Toggle Menu Mobile
+        btn.addEventListener('click', () => {
+            const isHidden = menu.classList.contains('hidden');
+            if (isHidden) {
+                menu.classList.remove('hidden');
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-xmark');
+            } else {
+                menu.classList.add('hidden');
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            }
+        });
+
+        // Tutup menu mobile jika link navigasi diklik
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            });
+        });
+
+        // Pengaturan bayangan Navbar saat di-scroll
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('shadow-lg', 'bg-white/98');
+            } else {
+                navbar.classList.remove('shadow-lg', 'bg-white/98');
+            }
+        });
+
+        // Fitur Salin Nomor Rekening
+        function copyRekening() {
+            const rekText = "901945335968";
+            
+            // Menggunakan execCommand fallback untuk compatibility iframe
+            const el = document.createElement('textarea');
+            el.value = rekText;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+
+            const copyBtnText = document.getElementById('copy-text');
+            const copyIcon = document.getElementById('copy-icon');
+            
+            copyBtnText.innerText = "Nomor Rekening Tersalin!";
+            copyIcon.className = "fa-solid fa-check text-green-700";
+            
+            setTimeout(() => {
+                copyBtnText.innerText = "Salin Nomor Rekening";
+                copyIcon.className = "fa-regular fa-copy";
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
