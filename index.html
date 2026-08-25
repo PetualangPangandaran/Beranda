@@ -90,7 +90,16 @@
         }
 
         .break-word-custom {
-            word-break: break-word;
+             word-break: break-word;
+        }
+
+        @keyframes floatingBounce{
+            0%,100%{transform:translateY(0);}
+            50%{transform:translateY(-12px);}
+        }
+
+        .floating-bounce{
+            animation:floatingBounce 2s ease-in-out infinite;
         }
     </style>
 </head>
@@ -578,14 +587,20 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-gray-800">
                 
-                <!-- Kolom Logo Footer (img8.jpg) -->
+                <!-- Kolom Logo Footer (img3.png) -->
                 <div class="md:col-span-1">
-                    <div class="flex items-center gap-2 mb-4">
-                        <img src="img3.png" 
-                             alt="Petualang Pangandaran Footer Logo (img8.jpg)" 
-                             class="h-16 w-auto bg-white/10 p-2 rounded-2xl backdrop-blur-sm object-contain"
-                             onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'font-fun font-bold text-xl text-white\'>PETUALANG <span class=\'text-brand-red\'>PANGANDARAN</span></div>';">
+                    <div class="flex items-center gap-3 mb-4">
+                        <img src="logo-pangandaran.png"
+                             alt="Logo Kabupaten Pangandaran"
+                             class="h-12 w-auto object-contain bg-white rounded-xl p-1">
+
+                        <div class="h-8 w-px bg-gray-500"></div>
+
+                        <img src="img3.png"
+                             alt="Logo Petualang Pangandaran"
+                             class="h-14 w-auto object-contain bg-white rounded-xl p-1">
                     </div>
+
                     <p class="text-gray-300 text-sm leading-relaxed mb-6">
                         <b>Petualang Pangandaran</b> adalah penyedia jasa trip & wisata alam terpercaya. Nikmati momen seru jelajah destinasi impianmu bersama kami!
                     </p>
@@ -656,7 +671,7 @@
     <!-- TOMBOL WA MELAYANG DI SISI KANAN BAWAH -->
     <a href="https://wa.me/6285780085291?text=Halo%20Petualang%20Pangandaran,%20saya%20mau%20tanya%20paket%20wisata" 
        target="_blank" rel="noopener noreferrer"
-       class="fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition duration-300 z-50 flex items-center justify-center animate-bounce"
+       class="fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition duration-300 z-50 flex items-center justify-center animate-bounce animate-bounce"
        title="Chat WhatsApp Petualang Pangandaran (085780085291)"
        aria-label="Hubungi WhatsApp Petualang Pangandaran">
         <i class="fa-brands fa-whatsapp text-3xl"></i>
