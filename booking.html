@@ -3,11 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Booking & Konsultasi | Petualang Pangandaran</title>
+    
+    <!-- Logo Tab Browser -->
+    <link rel="icon" type="image/png" href="img3.png">
+    <link rel="apple-touch-icon" href="img3.png">
+    
+    <title>Booking & Konsultasi Interaktif | Petualang Pangandaran</title>
     
     <!-- SEO & Meta Tags -->
-    <meta name="description" content="Halaman pemesanan dan konsultasi paket wisata Petualang Pangandaran. Sesuaikan destinasi, jadwal, dan jumlah rombongan Anda dengan mudah.">
-    <meta name="theme-color" content="#0F766E">
+    <meta name="description" content="Halaman pemesanan dan konsultasi interaktif paket wisata Petualang Pangandaran. Hitung estimasi biaya & sesuaikan liburan impian Anda secara langsung via WhatsApp.">
+    <meta name="author" content="Petualang Pangandaran">
+    <meta name="theme-color" content="#0f2c59">
         
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -32,12 +38,18 @@
                             red: '#e63946',       /* Merah Ceria */
                             yellow: '#ffb703',    /* Kuning 'Jelajah' */
                             green: '#2a9d8f',     /* Hijau Pegunungan */
+                            greenWA: '#25D366',   /* Hijau WA */
                             light: '#f0f8ff'      /* Latar Belakang Segar */
                         }
                     },
                     fontFamily: {
                         fun: ['Fredoka', 'cursive', 'sans-serif'],
                         sans: ['Poppins', 'sans-serif']
+                    },
+                    boxShadow: {
+                        'glow': '0 0 25px -5px rgba(26, 115, 232, 0.3)',
+                        'glow-green': '0 10px 25px -5px rgba(37, 211, 102, 0.4)',
+                        'card-hover': '0 20px 30px -10px rgba(15, 44, 89, 0.12)'
                     }
                 }
             }
@@ -48,263 +60,677 @@
         body { font-family: 'Poppins', sans-serif; background-color: #f0f8ff; }
         .font-fun { font-family: 'Fredoka', cursive, sans-serif; }
         
-        /* Custom Background Pattern for the page */
-        .bg-pattern {
-            background-color: #f0f8ff;
-            background-image: radial-gradient(#1a73e8 0.5px, transparent 0.5px), radial-gradient(#1a73e8 0.5px, #f0f8ff 0.5px);
-            background-size: 20px 20px;
-            background-position: 0 0, 10px 10px;
-            background-attachment: fixed;
+        /* Hero Background Image (img2.jpg) matching reference */
+        .hero-bg {
+            background: linear-gradient(180deg, rgba(15, 44, 89, 0.82) 0%, rgba(15, 44, 89, 0.94) 100%), 
+                        url('img2.jpg'), 
+                        linear-gradient(135deg, #0f2c59 0%, #1a73e8 100%);
+            background-size: cover;
+            background-position: center;
         }
 
-        /* Styling for form inputs */
+        .wave-bottom {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23f0f8ff' fill-opacity='1' d='M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,224C672,245,768,267,864,250.7C960,235,1056,181,1152,165.3C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        /* Input Custom Styling */
         .input-field {
-            @apply w-full px-4 py-3 rounded-2xl border-2 border-gray-200 bg-white/70 backdrop-blur-sm focus:bg-white focus:border-brand-blue focus:ring-4 focus:ring-brand-blue/20 transition-all outline-none text-gray-700;
+            @apply w-full px-4 py-3.5 rounded-2xl border-2 border-slate-200 bg-white/90 backdrop-blur-sm focus:bg-white focus:border-brand-blue focus:ring-4 focus:ring-brand-blue/15 transition-all duration-200 outline-none text-slate-800 placeholder-slate-400 font-medium text-sm sm:text-base shadow-sm;
         }
 
-        /* Hide number input arrows */
+        /* Selectable Card Styling */
+        .card-option {
+            @apply relative cursor-pointer rounded-2xl border-2 border-slate-200 bg-white p-4 transition-all duration-300 hover:border-brand-blue hover:shadow-xl hover:-translate-y-1 flex flex-col justify-between overflow-hidden select-none active:scale-95;
+        }
+        .card-option.selected {
+            @apply border-brand-blue bg-blue-50/80 ring-4 ring-brand-blue/25 shadow-lg -translate-y-0.5;
+            animation: cardPop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+        .card-option.selected .check-badge {
+            @apply scale-100 opacity-100;
+            animation: checkBounce 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        /* Animasi Pop & Bounce saat Wahana Ditolak/Dipilih */
+        @keyframes cardPop {
+            0% { transform: scale(0.95); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes checkBounce {
+            0% { transform: scale(0) rotate(-45deg); opacity: 0; }
+            70% { transform: scale(1.25) rotate(10deg); opacity: 1; }
+            100% { transform: scale(1) rotate(0deg); opacity: 1; }
+        }
+
+        /* Hide number input spinners */
         input[type="number"]::-webkit-inner-spin-button, 
         input[type="number"]::-webkit-outer-spin-button { 
             -webkit-appearance: none; 
             margin: 0; 
         }
-        
-        /* Floating animation for the header image/icon */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
+
+        @keyframes floatingBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
         }
-        .animate-float {
-            animation: float 4s ease-in-out infinite;
+
+        .floating-bounce {
+            animation: floatingBounce 2.5s ease-in-out infinite;
+        }
+
+        .break-word-custom {
+            word-break: break-word;
         }
     </style>
 </head>
-<body class="bg-pattern text-gray-800 antialiased min-h-screen flex flex-col">
+<body class="bg-brand-light text-slate-800 antialiased min-h-screen flex flex-col selection:bg-brand-yellow selection:text-brand-navy">
 
-    <!-- MAIN CONTENT AREA -->
-    <main class="flex-grow py-10 px-4 sm:px-6">
-        <div class="max-w-3xl mx-auto">
-            
-            <!-- HEADER SECTION -->
-            <div class="text-center mb-10">
-                <div class="inline-flex items-center justify-center w-20 h-20 bg-brand-yellow text-brand-navy rounded-full text-4xl mb-6 shadow-xl animate-float border-4 border-white">
-                    <i class="fa-solid fa-map-location-dot"></i>
+    <!-- BANNER PEMBERITAHUAN ATAS -->
+    <div id="top-banner" class="bg-brand-yellow text-brand-navy py-2 px-4 text-center font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-sm fixed top-0 w-full z-50 h-9">
+        <i class="fa-solid fa-sun animate-spin" style="animation-duration: 8s;"></i>
+        <span class="truncate">FORM KONSULTASI & RESERVASI LANGSUNG DENGAN TIM PETUALANG PANGANDARAN</span>
+    </div>
+
+    <!-- NAVBAR HEADER DUAL LOGO WITH BACK BUTTON -->
+    <nav id="navbar" class="bg-white/95 backdrop-blur-md shadow-md fixed w-full z-40 top-9 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                
+                <!-- DUAL LOGO NAVBAR (Logo Kab. Pangandaran & Logo Petualang Pangandaran) -->
+                <a href="https://petualangpangandaran.github.io/Beranda" class="flex items-center gap-2 sm:gap-3 group py-2" aria-label="Beranda Petualang Pangandaran">
+                    <!-- Logo 1: Kabupaten Pangandaran -->
+                    <img src="logo-pangandaran.png" 
+                         alt="Logo Kab. Pangandaran" 
+                         class="h-10 sm:h-12 w-auto object-contain group-hover:scale-105 transition duration-300"
+                         onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Lambang_Kabupaten_Pangandaran.png/480px-Lambang_Kabupaten_Pangandaran.png';">
+                    
+                    <!-- Garis Pemisah Visual -->
+                    <div class="h-8 w-[1px] bg-gray-300 mx-0.5 sm:mx-1"></div>
+
+                    <!-- Logo 2: Brand Utama (img3.png) -->
+                    <img src="img3.png" 
+                         alt="Logo Petualang Pangandaran" 
+                         class="h-12 sm:h-16 w-auto object-contain group-hover:scale-105 transition duration-300"
+                         onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center gap-2\'><div class=\'w-11 h-11 bg-brand-red rounded-2xl flex items-center justify-center text-white font-fun font-bold text-xl shadow\'>PP</div><div><span class=\'font-fun font-bold text-lg sm:text-2xl text-brand-navy leading-none block\'>PETUALANG <span class=\'text-brand-red\'>PANGANDARAN</span></span><span class=\'text-[10px] font-bold text-brand-yellow bg-brand-navy px-1.5 py-0.5 rounded tracking-wider block mt-0.5\'>TOUR & TRAVEL</span></div></div>';">
+                </a>
+
+                <!-- NAV BUTTONS & BACK TO BERANDA LINK -->
+                <div class="flex items-center gap-3">
+                    <!-- TOMBOL KEMBALI KE BERANDA (DESKTOP & MOBILE) -->
+                    <a href="https://petualangpangandaran.github.io/Beranda" 
+                       class="bg-brand-navy hover:bg-slate-800 text-white font-fun font-bold px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm shadow-md transition duration-200 flex items-center gap-2 border border-white/20 hover:scale-105">
+                        <i class="fa-solid fa-arrow-left text-brand-yellow"></i>
+                        <span>Kembali ke Beranda</span>
+                    </a>
+
+                    <!-- DIRECT WA CONTACT BUTTON -->
+                    <a href="https://wa.me/6285780085291" target="_blank" rel="noopener noreferrer"
+                       class="hidden md:flex bg-brand-red text-white px-5 py-2.5 rounded-full font-fun font-bold text-sm hover:bg-red-600 transition shadow-lg flex items-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                        <span>Admin WA</span>
+                    </a>
                 </div>
-                <h1 class="text-3xl sm:text-4xl font-fun font-bold text-brand-navy mb-3">Rencanakan Petualanganmu!</h1>
-                <p class="text-gray-600">Pilih destinasi, tentukan tanggal, atau konsultasikan liburan impian Anda. Tim kami akan menyiapkan penawaran terbaik via WhatsApp.</p>
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION DENGAN BG IMAGE (img2.jpg) -->
+    <header class="hero-bg relative pt-36 sm:pt-40 pb-20 sm:pb-28 text-white">
+        <div class="relative z-10 max-w-4xl mx-auto px-4 text-center">
+            
+            <!-- BADGE SLOGAN -->
+            <div class="inline-flex items-center gap-2 py-2 px-5 rounded-full bg-white/20 backdrop-blur-md border border-white/40 text-brand-yellow font-fun font-bold text-sm sm:text-base mb-4 shadow-lg floating-bounce">
+                <i class="fa-solid fa-compass text-brand-yellow"></i>
+                <span>Estimasi Biaya Instant & WhatsApp Connect</span>
             </div>
 
-            <!-- BOOKING FORM CARD -->
-            <div class="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-white p-6 sm:p-10 relative overflow-hidden">
-                <!-- Decorative element -->
-                <div class="absolute top-0 right-0 w-40 h-40 bg-brand-cyan/10 rounded-full blur-3xl -mr-20 -mt-20"></div>
-                <div class="absolute bottom-0 left-0 w-40 h-40 bg-brand-yellow/10 rounded-full blur-3xl -ml-20 -mb-20"></div>
+            <h1 class="text-3xl sm:text-5xl md:text-6xl font-fun font-extrabold text-white mb-4 leading-tight drop-shadow-md break-word-custom">
+                Form Booking & <span class="text-brand-yellow underline decoration-brand-red decoration-wavy">Konsultasi Impian</span> Liburanmu
+            </h1>
 
-                <form id="bookingForm" class="relative z-10 space-y-8">
+            <p class="text-sm sm:text-lg text-gray-100 max-w-2xl mx-auto font-normal leading-relaxed drop-shadow mb-8">
+                Pilih aktivitas favoritmu, tentukan tanggal, dan dapatkan kalkulasi estimasi instan! Data langsung terhubung resmi ke WhatsApp Costumer Service Petualang Pangandaran.
+            </p>
+
+            <!-- STATS BADGE -->
+            <div class="flex flex-wrap items-center justify-center gap-3 text-xs sm:text-sm">
+                <span class="bg-white/10 backdrop-blur-md border border-white/20 px-3.5 py-1.5 rounded-xl font-medium text-amber-300">
+                    ⭐ 4.9/5.0 Ulasan Wisatawan
+                </span>
+                <span class="bg-white/10 backdrop-blur-md border border-white/20 px-3.5 py-1.5 rounded-xl font-medium text-emerald-300">
+                    <i class="fa-solid fa-shield-halved mr-1"></i> Bebas Biaya Admin
+                </span>
+                <span class="bg-white/10 backdrop-blur-md border border-white/20 px-3.5 py-1.5 rounded-xl font-medium text-cyan-200">
+                    <i class="fa-solid fa-bolt mr-1"></i> Respon Super Cepat
+                </span>
+            </div>
+
+        </div>
+
+        <!-- DEKORASI OMBAK BAWAH -->
+        <div class="absolute bottom-0 left-0 right-0 h-16 sm:h-24 wave-bottom"></div>
+    </header>
+
+    <!-- MAIN FORM CONTAINER -->
+    <main class="flex-grow py-6 sm:py-10 px-3 sm:px-6 -mt-10 sm:-mt-16 relative z-20">
+        <div class="max-w-4xl mx-auto">
+
+            <!-- FORM CARD MAIN -->
+            <div class="bg-white rounded-3xl shadow-2xl border border-slate-100 overflow-hidden relative">
+                
+                <!-- Decorative Blur Glows -->
+                <div class="absolute -top-24 -right-24 w-64 h-64 bg-brand-blue/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-brand-yellow/15 rounded-full blur-3xl pointer-events-none"></div>
+
+                <!-- FORM HEADER STEPPER PIPES -->
+                <div class="bg-slate-50 border-b border-slate-100 px-6 py-4 flex items-center justify-between text-xs font-semibold text-slate-500">
+                    <span class="flex items-center gap-2 text-brand-navy font-fun font-bold text-sm sm:text-base">
+                        <i class="fa-solid fa-pen-to-square text-brand-blue"></i> Isian Serba Mudah & Instan
+                    </span>
+                    <span class="bg-emerald-100 text-emerald-700 px-2.5 py-1 rounded-full text-[11px] font-bold flex items-center gap-1">
+                        <i class="fa-solid fa-bolt text-yellow-500"></i> Respon WhatsApp Cepat
+                    </span>
+                </div>
+
+                <form id="bookingForm" onsubmit="event.preventDefault();" class="p-5 sm:p-8 space-y-8 relative z-10">
                     
-                    <!-- SECTION 1: Data Diri -->
-                    <div>
-                        <h2 class="font-fun font-bold text-xl text-brand-navy border-b-2 border-brand-yellow pb-2 mb-5 inline-block">1. Informasi Pemesan</h2>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <!-- STEP 1: INFORMASI PEMESAN -->
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                            <h2 class="font-fun font-bold text-lg sm:text-xl text-brand-navy flex items-center gap-2.5">
+                                <span class="w-8 h-8 rounded-full bg-brand-navy text-white text-sm flex items-center justify-center font-sans font-bold shadow-sm">1</span>
+                                Data Pemesan Utama
+                            </h2>
+                            <span class="text-xs text-slate-400 font-medium">*Wajib diisi</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
+                            <!-- Nama Lengkap -->
                             <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-1.5" for="nama">Nama Lengkap <span class="text-red-500">*</span></label>
+                                <label class="block text-xs sm:text-sm font-semibold text-slate-700 mb-1.5" for="nama">
+                                    Nama Lengkap <span class="text-brand-red">*</span>
+                                </label>
                                 <div class="relative">
-                                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400">
+                                    <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 text-sm">
                                         <i class="fa-regular fa-user"></i>
                                     </div>
-                                    <input type="text" id="nama" class="input-field pl-11" placeholder="Cth: Budi Santoso" required>
+                                    <input type="text" id="nama" class="input-field pl-10" placeholder="Contoh: Syadad Nabil" required oninput="updateSummary()">
                                 </div>
                             </div>
+
+                            <!-- Asal Kota -->
                             <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-1.5" for="asalKota">Asal Kota <span class="text-red-500">*</span></label>
+                                <label class="block text-xs sm:text-sm font-semibold text-slate-700 mb-1.5" for="asalKota">
+                                    Asal Kota / Daerah <span class="text-brand-red">*</span>
+                                </label>
                                 <div class="relative">
-                                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400">
-                                        <i class="fa-solid fa-city"></i>
+                                    <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 text-sm">
+                                        <i class="fa-solid fa-location-dot"></i>
                                     </div>
-                                    <input type="text" id="asalKota" class="input-field pl-11" placeholder="Cth: Bandung, Jakarta, Semarang" required>
+                                    <input type="text" id="asalKota" class="input-field pl-10" placeholder="Contoh: Bandung, Jakarta, Bekasi" required oninput="updateSummary()">
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- SECTION 2: Detail Liburan -->
-                    <div>
-                        <h2 class="font-fun font-bold text-xl text-brand-navy border-b-2 border-brand-yellow pb-2 mb-5 inline-block">2. Detail Rencana Perjalanan</h2>
-                        
-                        <div class="space-y-5">
-                            <!-- Destinasi -->
+                    <!-- STEP 2: PILIH DESTINASI & PAKET (VISUAL CARDS) -->
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between border-b border-slate-100 pb-3">
                             <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-1.5" for="destinasi">Pilih Aktivitas / Destinasi <span class="text-red-500">*</span></label>
+                                <h2 class="font-fun font-bold text-lg sm:text-xl text-brand-navy flex items-center gap-2.5">
+                                    <span class="w-8 h-8 rounded-full bg-brand-navy text-white text-sm flex items-center justify-center font-sans font-bold shadow-sm">2</span>
+                                    Pilih Aktivitas / Wahana
+                                </h2>
+                                <p class="text-xs text-slate-500 mt-0.5 ml-10">Klik salah satu kartu petualangan di bawah ini</p>
+                            </div>
+                        </div>
+
+                        <!-- Hidden select element synced with card choices for fallbacks -->
+                        <input type="hidden" id="destinasi" value="Body Rafting Citumang">
+
+                        <!-- VISUAL CARDS GRID -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4" id="destinationGrid">
+                            
+                            <!-- Card 1: Citumang -->
+                            <div class="card-option selected" data-value="Body Rafting Citumang" data-price="85000" onclick="selectDestination(this)">
+                                <div class="absolute top-3 right-3 w-6 h-6 rounded-full bg-brand-blue text-white flex items-center justify-center text-xs check-badge transition-all duration-200">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <div>
+                                    <div class="inline-block bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded-md mb-2">🔥 Paling Populer</div>
+                                    <div class="text-2xl mb-1 text-brand-navy"><i class="fa-solid fa-water-ladder"></i></div>
+                                    <h3 class="font-fun font-bold text-slate-800 text-base">Body Rafting Citumang</h3>
+                                    <p class="text-xs text-slate-500 mt-1 leading-snug">Jelajah sungai jernih, goa stalaktit, & terjun ke bendungan hits.</p>
+                                </div>
+                                <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+                                    <span class="text-[11px] text-slate-400">Estimasi Mulai</span>
+                                    <span class="font-fun font-bold text-brand-blue text-sm">Rp 85rb <span class="text-[10px] font-normal text-slate-500">/org</span></span>
+                                </div>
+                            </div>
+
+                            <!-- Card 2: Perahu Sunset -->
+                            <div class="card-option" data-value="Sewa Perahu Sunset Cagar Alam" data-price="150000" data-pricing-mode="flat" onclick="selectDestination(this)">
+                                <div class="absolute top-3 right-3 w-6 h-6 rounded-full bg-brand-blue text-white flex items-center justify-center text-xs check-badge opacity-0 scale-50 transition-all duration-200">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <div>
+                                    <div class="inline-block bg-orange-100 text-orange-800 text-[10px] font-bold px-2 py-0.5 rounded-md mb-2">⛵ Santai & Sunset</div>
+                                    <div class="text-2xl mb-1 text-orange-500"><i class="fa-solid fa-ship"></i></div>
+                                    <h3 class="font-fun font-bold text-slate-800 text-base">Perahu Sunset Cagar Alam</h3>
+                                    <p class="text-xs text-slate-500 mt-1 leading-snug">Keliling pantai barat/timur, pasir putih, goa alam & pesona senja.</p>
+                                </div>
+                                <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+                                    <span class="text-[11px] text-slate-400">Estimasi /Perahu</span>
+                                    <span class="font-fun font-bold text-brand-blue text-sm">Rp 150rb <span class="text-[10px] font-normal text-slate-500">/perahu</span></span>
+                                </div>
+                            </div>
+
+                            <!-- Card 3: Green Canyon -->
+                            <div class="card-option" data-value="Body Rafting Green Canyon" data-price="200000" onclick="selectDestination(this)">
+                                <div class="absolute top-3 right-3 w-6 h-6 rounded-full bg-brand-blue text-white flex items-center justify-center text-xs check-badge opacity-0 scale-50 transition-all duration-200">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <div>
+                                    <div class="inline-block bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-md mb-2">⛰️ Menantang</div>
+                                    <div class="text-2xl mb-1 text-emerald-600"><i class="fa-solid fa-mountain"></i></div>
+                                    <h3 class="font-fun font-bold text-slate-800 text-base">Body Rafting Green Canyon</h3>
+                                    <p class="text-xs text-slate-500 mt-1 leading-snug">Ngarai hijau spektakuler, tebing batu megah & tebing loncat 10m+.</p>
+                                </div>
+                                <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+                                    <span class="text-[11px] text-slate-400">Estimasi Mulai</span>
+                                    <span class="font-fun font-bold text-brand-blue text-sm">Rp 200rb <span class="text-[10px] font-normal text-slate-500">/org</span></span>
+                                </div>
+                            </div>
+
+                            <!-- Card 4: Family Gathering -->
+                            <div class="card-option" data-value="Paket Family Gathering Full" data-price="275000" onclick="selectDestination(this)">
+                                <div class="absolute top-3 right-3 w-6 h-6 rounded-full bg-brand-blue text-white flex items-center justify-center text-xs check-badge opacity-0 scale-50 transition-all duration-200">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <div>
+                                    <div class="inline-block bg-blue-100 text-blue-800 text-[10px] font-bold px-2 py-0.5 rounded-md mb-2">👥 Grup / Kantor</div>
+                                    <div class="text-2xl mb-1 text-brand-blue"><i class="fa-solid fa-people-group"></i></div>
+                                    <h3 class="font-fun font-bold text-slate-800 text-base">Family Gathering Full</h3>
+                                    <p class="text-xs text-slate-500 mt-1 leading-snug">Paket komplit: wahana, makan siang, master game, sound & outbound.</p>
+                                </div>
+                                <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+                                    <span class="text-[11px] text-slate-400">Estimasi Mulai</span>
+                                    <span class="font-fun font-bold text-brand-blue text-sm">Rp 275rb <span class="text-[10px] font-normal text-slate-500">/pax</span></span>
+                                </div>
+                            </div>
+
+                            <!-- Card 5: Camping -->
+                            <div class="card-option" data-value="Camping Pantai Eksotis" data-price="175000" onclick="selectDestination(this)">
+                                <div class="absolute top-3 right-3 w-6 h-6 rounded-full bg-brand-blue text-white flex items-center justify-center text-xs check-badge opacity-0 scale-50 transition-all duration-200">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <div>
+                                    <div class="inline-block bg-purple-100 text-purple-800 text-[10px] font-bold px-2 py-0.5 rounded-md mb-2">🏕️ Outdoor Night</div>
+                                    <div class="text-2xl mb-1 text-purple-600"><i class="fa-solid fa-campground"></i></div>
+                                    <h3 class="font-fun font-bold text-slate-800 text-base">Camping Pantai Eksotis</h3>
+                                    <p class="text-xs text-slate-500 mt-1 leading-snug">Tenda komplit, api unggun tepi pantai, & perlengkapan outdoor.</p>
+                                </div>
+                                <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+                                    <span class="text-[11px] text-slate-400">Estimasi Mulai</span>
+                                    <span class="font-fun font-bold text-brand-blue text-sm">Rp 175rb <span class="text-[10px] font-normal text-slate-500">/org</span></span>
+                                </div>
+                            </div>
+
+                            <!-- Card 6: Custom -->
+                            <div class="card-option" data-value="Custom Tour / Konsultasi Dulu" data-price="0" onclick="selectDestination(this)">
+                                <div class="absolute top-3 right-3 w-6 h-6 rounded-full bg-brand-blue text-white flex items-center justify-center text-xs check-badge opacity-0 scale-50 transition-all duration-200">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <div>
+                                    <div class="inline-block bg-pink-100 text-pink-800 text-[10px] font-bold px-2 py-0.5 rounded-md mb-2">✨ Fleksibel</div>
+                                    <div class="text-2xl mb-1 text-pink-500"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                                    <h3 class="font-fun font-bold text-slate-800 text-base">Custom / Bebas Konsul</h3>
+                                    <p class="text-xs text-slate-500 mt-1 leading-snug">Punya rute sendiri? Diskusi budget & rundown fleksibel via WA.</p>
+                                </div>
+                                <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+                                    <span class="text-[11px] text-slate-400">Biaya Paket</span>
+                                    <span class="font-fun font-bold text-emerald-600 text-sm">Negosiasi WA</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- STEP 3: TANGGAL, DURASI & JUMLAH PESERTA -->
+                    <div class="space-y-5">
+                        <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                            <h2 class="font-fun font-bold text-lg sm:text-xl text-brand-navy flex items-center gap-2.5">
+                                <span class="w-8 h-8 rounded-full bg-brand-navy text-white text-sm flex items-center justify-center font-sans font-bold shadow-sm">3</span>
+                                Tanggal & Rombongan
+                            </h2>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            
+                            <!-- Tanggal Keberangkatan + Quick Chips -->
+                            <div>
+                                <label class="block text-xs sm:text-sm font-semibold text-slate-700 mb-1.5" for="tanggal">
+                                    Tanggal Keberangkatan <span class="text-brand-red">*</span>
+                                </label>
                                 <div class="relative">
-                                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-brand-red">
-                                        <i class="fa-solid fa-location-arrow"></i>
+                                    <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 text-sm">
+                                        <i class="fa-regular fa-calendar-check"></i>
                                     </div>
-                                    <select id="destinasi" class="input-field pl-11 appearance-none bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23131313%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E')] bg-[length:12px_12px] bg-no-repeat bg-[position:right_1rem_center]" required>
-                                        <option value="" disabled selected>-- Pilih Destinasi atau Pilih Custom --</option>
-                                        <option value="Body Rafting Citumang">🌊 Body Rafting Citumang</option>
-                                        <option value="Body Rafting Green Canyon">⛰️ Body Rafting Green Canyon</option>
-                                        <option value="Sewa Perahu Sunset">⛵ Sewa Perahu Sunset Cagar Alam</option>
-                                        <option value="Paket Family Gathering">👥 Paket Family Gathering</option>
-                                        <option value="Camping Pantai Eksotis">🏕️ Camping Pantai Eksotis</option>
-                                        <option value="Custom / Konsultasi Dulu">✨ Custom Tour (Konsultasikan Kebutuhan)</option>
+                                    <input type="date" id="tanggal" class="input-field pl-10" required onchange="updateSummary()">
+                                </div>
+                                
+                                <!-- Quick Date Selector Chips -->
+                                <div class="flex flex-wrap gap-1.5 mt-2.5">
+                                    <span class="text-[11px] text-slate-400 flex items-center mr-1">Pintas:</span>
+                                    <button type="button" onclick="setQuickDate(1)" class="text-xs bg-slate-100 hover:bg-brand-blue hover:text-white text-slate-600 font-medium px-2.5 py-1 rounded-lg transition duration-150">Besok</button>
+                                    <button type="button" onclick="setQuickDate('weekend')" class="text-xs bg-slate-100 hover:bg-brand-blue hover:text-white text-slate-600 font-medium px-2.5 py-1 rounded-lg transition duration-150">Sabtu Ini</button>
+                                    <button type="button" onclick="setQuickDate(7)" class="text-xs bg-slate-100 hover:bg-brand-blue hover:text-white text-slate-600 font-medium px-2.5 py-1 rounded-lg transition duration-150">Minggu Depan</button>
+                                </div>
+                            </div>
+
+                            <!-- Durasi Trip -->
+                            <div>
+                                <label class="block text-xs sm:text-sm font-semibold text-slate-700 mb-1.5" for="durasi">
+                                    Estimasi Durasi Liburan <span class="text-brand-red">*</span>
+                                </label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-brand-blue text-sm">
+                                        <i class="fa-solid fa-hourglass-half"></i>
+                                    </div>
+                                    <select id="durasi" class="input-field pl-10 appearance-none bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23131313%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E')] bg-[length:10px_10px] bg-no-repeat bg-[position:right_1.25rem_center]" required onchange="updateSummary()">
+                                        <option value="1 Hari (One Day Tour)">⚡ 1 Hari (One Day Trip / Tanpa Menginap)</option>
+                                        <option value="2 Hari 1 Malam (2D1N)">🌙 2 Hari 1 Malam (2D1N)</option>
+                                        <option value="3 Hari 2 Malam (3D2N)">🏝️ 3 Hari 2 Malam (3D2N - Paling Komplit)</option>
+                                        <option value="Lainnya (Bahas via Chat)">💬 Durasi Lainnya (Konsultasi via Chat)</option>
                                     </select>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                                <!-- Tanggal -->
+                        <!-- Jumlah Peserta & Quick Preset Counter -->
+                        <div class="bg-blue-50/60 p-4 sm:p-5 rounded-2xl border border-blue-100">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
                                 <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-1.5" for="tanggal">Rencana Keberangkatan <span class="text-red-500">*</span></label>
-                                    <div class="relative">
-                                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400">
-                                            <i class="fa-regular fa-calendar-days"></i>
-                                        </div>
-                                        <input type="date" id="tanggal" class="input-field pl-11" required>
-                                    </div>
+                                    <label class="block text-xs sm:text-sm font-semibold text-brand-navy" for="jumlah">
+                                        Jumlah Wisatawan (Orang) <span class="text-brand-red">*</span>
+                                    </label>
+                                    <p class="text-[11px] text-slate-500">Makin banyak anggota rombongan, makin hemat!</p>
                                 </div>
                                 
-                                <!-- Durasi -->
-                                <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-1.5" for="durasi">Estimasi Waktu Liburan <span class="text-red-500">*</span></label>
-                                    <div class="relative">
-                                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-brand-blue">
-                                            <i class="fa-solid fa-clock"></i>
-                                        </div>
-                                        <select id="durasi" class="input-field pl-11 appearance-none bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23131313%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E')] bg-[length:12px_12px] bg-no-repeat bg-[position:right_1rem_center]" required>
-                                            <option value="" disabled selected>-- Pilih Durasi --</option>
-                                            <option value="1 Hari (One Day Tour)">1 Hari (One Day Trip)</option>
-                                            <option value="2 Hari 1 Malam (2D1N)">2 Hari 1 Malam (2D1N)</option>
-                                            <option value="3 Hari 2 Malam (3D2N)">3 Hari 2 Malam (3D2N)</option>
-                                            <option value="Lainnya (Bahas via Chat)">Lainnya (Bahas via Chat)</option>
-                                        </select>
-                                    </div>
+                                <!-- Preset Buttons -->
+                                <div class="flex items-center gap-1.5 self-start sm:self-auto">
+                                    <button type="button" onclick="setJumlah(2)" class="text-xs bg-white border border-slate-200 hover:border-brand-blue px-2.5 py-1 rounded-lg text-slate-700 font-medium transition">2 Org</button>
+                                    <button type="button" onclick="setJumlah(5)" class="text-xs bg-white border border-slate-200 hover:border-brand-blue px-2.5 py-1 rounded-lg text-slate-700 font-medium transition">5 Org</button>
+                                    <button type="button" onclick="setJumlah(10)" class="text-xs bg-white border border-slate-200 hover:border-brand-blue px-2.5 py-1 rounded-lg text-slate-700 font-medium transition">10+ Org</button>
                                 </div>
                             </div>
 
-                            <!-- Jumlah Peserta -->
+                            <div class="flex items-center gap-3">
+                                <button type="button" onclick="ubahJumlah(-1)" class="w-12 h-12 rounded-2xl bg-white hover:bg-slate-100 flex items-center justify-center text-xl font-bold text-brand-navy transition shadow-sm border border-slate-200 active:scale-95">
+                                    <i class="fa-solid fa-minus"></i>
+                                </button>
+                                <input type="number" id="jumlah" value="4" min="1" class="input-field text-center font-fun font-bold text-2xl h-12 !py-0 flex-grow shadow-inner text-brand-navy" required oninput="updateSummary()">
+                                <button type="button" onclick="ubahJumlah(1)" class="w-12 h-12 rounded-2xl bg-brand-yellow hover:bg-amber-400 flex items-center justify-center text-xl font-bold text-brand-navy transition shadow-sm border border-amber-400 active:scale-95">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- STEP 4: LAYANAN TAMBAHAN (ADD-ONS) -->
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between border-b border-slate-100 pb-3">
                             <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-1.5" for="jumlah">Jumlah Wisatawan (Orang) <span class="text-red-500">*</span></label>
-                                <div class="flex items-center gap-3">
-                                    <button type="button" onclick="ubahJumlah(-1)" class="w-12 h-12 rounded-xl bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-xl font-bold text-brand-navy transition shadow-sm border border-gray-200">
-                                        <i class="fa-solid fa-minus"></i>
-                                    </button>
-                                    <input type="number" id="jumlah" value="2" min="1" class="input-field text-center font-bold text-xl h-12 !py-0 flex-grow" required>
-                                    <button type="button" onclick="ubahJumlah(1)" class="w-12 h-12 rounded-xl bg-brand-yellow hover:bg-yellow-400 flex items-center justify-center text-xl font-bold text-brand-navy transition shadow-sm border border-yellow-500">
-                                        <i class="fa-solid fa-plus"></i>
-                                    </button>
-                                </div>
-                                <p class="text-xs text-gray-500 mt-2"><i class="fa-solid fa-circle-info mr-1 text-brand-blue"></i> Harga paket akan menyesuaikan dengan jumlah rombongan. Makin banyak makin hemat!</p>
+                                <h2 class="font-fun font-bold text-lg sm:text-xl text-brand-navy flex items-center gap-2.5">
+                                    <span class="w-8 h-8 rounded-full bg-brand-navy text-white text-sm flex items-center justify-center font-sans font-bold shadow-sm">4</span>
+                                    Layanan Tambahan (Opsional)
+                                </h2>
+                                <p class="text-xs text-slate-500 mt-0.5 ml-10">Centang kebutuhan ekstra rombongan Anda</p>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- SECTION 3: Konsultasi Khusus -->
-                    <div>
-                        <h2 class="font-fun font-bold text-xl text-brand-navy border-b-2 border-brand-yellow pb-2 mb-5 inline-block">3. Penyesuaian & Konsultasi</h2>
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-1.5" for="catatan">Ceritakan Keinginan Liburan Anda (Opsional)</label>
-                            <textarea id="catatan" rows="4" class="input-field resize-none" placeholder="Contoh: Saya bawa anak kecil umur 5 tahun, minta disediain pelampung ukuran kecil. Atau: Minta tolong aturin budget di bawah 1 juta untuk 4 orang ya..."></textarea>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <label class="flex items-center gap-3 p-3.5 rounded-2xl border border-slate-200 bg-slate-50/50 hover:bg-white cursor-pointer transition">
+                                <input type="checkbox" id="addonGopro" value="Dokumentasi GoPro/Camera" class="w-5 h-5 accent-brand-blue rounded" onchange="updateSummary()">
+                                <div>
+                                    <span class="text-xs sm:text-sm font-semibold text-slate-800 block">📸 Dokumentasi Kamera / GoPro</span>
+                                    <span class="text-[11px] text-slate-500">Foto & Video aksi rafting resolusi HD</span>
+                                </div>
+                            </label>
+
+                            <label class="flex items-center gap-3 p-3.5 rounded-2xl border border-slate-200 bg-slate-50/50 hover:bg-white cursor-pointer transition">
+                                <input type="checkbox" id="addonMakan" value="Makan Siang Khas Sunda/Seafood" class="w-5 h-5 accent-brand-blue rounded" onchange="updateSummary()">
+                                <div>
+                                    <span class="text-xs sm:text-sm font-semibold text-slate-800 block">🍱 Makan Siang Sunda / Seafood</span>
+                                    <span class="text-[11px] text-slate-500">Nasi liwet, ikan bakar & kelapa muda</span>
+                                </div>
+                            </label>
+
+                            <label class="flex items-center gap-3 p-3.5 rounded-2xl border border-slate-200 bg-slate-50/50 hover:bg-white cursor-pointer transition">
+                                <input type="checkbox" id="addonPenginapan" value="Rekomendasi Homestay/Hotel" class="w-5 h-5 accent-brand-blue rounded" onchange="updateSummary()">
+                                <div>
+                                    <span class="text-xs sm:text-sm font-semibold text-slate-800 block">🏠 Penginapan / Homestay</span>
+                                    <span class="text-[11px] text-slate-500">Bantuan penginapan dekat lokasi wisata</span>
+                                </div>
+                            </label>
+
+                            <label class="flex items-center gap-3 p-3.5 rounded-2xl border border-slate-200 bg-slate-50/50 hover:bg-white cursor-pointer transition">
+                                <input type="checkbox" id="addonTransport" value="Transport Antar-Jemput Stasiun/Terminal" class="w-5 h-5 accent-brand-blue rounded" onchange="updateSummary()">
+                                <div>
+                                    <span class="text-xs sm:text-sm font-semibold text-slate-800 block">🚐 Antar-Jemput Stasiun / Terminal</span>
+                                    <span class="text-[11px] text-slate-500">Layanan jemput di Banjar/Sidamulih</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <!-- Catatan Khusus -->
+                        <div class="pt-2">
+                            <label class="block text-xs sm:text-sm font-semibold text-slate-700 mb-1.5" for="catatan">
+                                Catatan Khusus atau Pertanyaan
+                            </label>
+                            <textarea id="catatan" rows="3" class="input-field resize-none text-xs sm:text-sm" placeholder="Contoh: Bawa anak usia 5 tahun, butuh pelampung ukuran kecil. Atau: Minta rincian penawaran resmi untuk rombongan instansi..." oninput="updateSummary()"></textarea>
                         </div>
                     </div>
 
-                    <!-- SUBMIT BUTTON -->
-                    <div class="pt-4">
-                        <button type="button" onclick="kirimKeWhatsApp()" class="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-fun font-bold text-xl py-4 px-6 rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition duration-300 flex items-center justify-center gap-3">
-                            <i class="fa-brands fa-whatsapp text-3xl"></i> 
-                            Kirim & Konsultasikan via WhatsApp
-                        </button>
-                        <p class="text-center text-xs text-gray-500 mt-4">
-                            <i class="fa-solid fa-lock mr-1 text-gray-400"></i> Data Anda tidak disimpan di server kami, melainkan langsung diteruskan ke WhatsApp Anda.
-                        </p>
+                    <!-- LIVE SUMMARY & ESTIMATE RECEIPT BOX -->
+                    <div class="bg-gradient-to-br from-brand-navy to-slate-900 rounded-3xl p-5 sm:p-6 text-white shadow-xl relative overflow-hidden">
+                        <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-brand-yellow/10 rounded-full blur-2xl pointer-events-none"></div>
+                        
+                        <div class="flex items-center justify-between border-b border-white/10 pb-3 mb-4">
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-receipt text-brand-yellow text-lg"></i>
+                                <span class="font-fun font-bold text-base">Ringkasan Estimasi Pesanan</span>
+                            </div>
+                            <span class="text-[10px] bg-white/15 px-2.5 py-0.5 rounded-full text-slate-300">Live Preview</span>
+                        </div>
+
+                        <div class="space-y-2.5 text-xs sm:text-sm text-slate-200 mb-5">
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Nama Pemesan:</span>
+                                <span class="font-semibold text-white" id="summaryNama">Belum diisi</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Destinasi / Paket:</span>
+                                <span class="font-semibold text-brand-yellow" id="summaryDestinasi">Body Rafting Citumang</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Jadwal & Peserta:</span>
+                                <span class="font-semibold text-white" id="summaryDetail">-</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Add-Ons:</span>
+                                <span class="font-semibold text-white" id="summaryAddons">Tidak ada</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                            <div>
+                                <span class="text-[11px] text-slate-400 block">Estimasi Total Biaya Paket:</span>
+                                <div class="text-2xl sm:text-3xl font-fun font-bold text-brand-yellow" id="summaryPrice">
+                                    Rp 340.000
+                                </div>
+                                <span class="text-[10px] text-emerald-300"><i class="fa-solid fa-shield-halved"></i> Bebas Biaya Kenaikan Saat Booking Hari Ini</span>
+                            </div>
+                            
+                            <!-- BIG ACTION BUTTON -->
+                            <button type="button" onclick="kirimKeWhatsApp()" class="w-full sm:w-auto bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-white font-fun font-bold text-lg sm:text-xl py-4 px-8 rounded-2xl shadow-glow-green hover:-translate-y-0.5 active:translate-y-0 transition duration-200 flex items-center justify-center gap-3">
+                                <i class="fa-brands fa-whatsapp text-2xl sm:text-3xl animate-bounce"></i> 
+                                <span>Kirim via WhatsApp</span>
+                            </button>
+                        </div>
                     </div>
+
+                    <p class="text-center text-[11px] sm:text-xs text-slate-400">
+                        <i class="fa-solid fa-lock mr-1 text-slate-400"></i> Konsultasi 100% Gratis. Pesan Anda langsung terkirim ke WhatsApp customer care resmi tanpa simpan data di server luar.
+                    </p>
 
                 </form>
             </div>
         </div>
     </main>
 
+    <!-- SECTION INFORMASI REKENING PEMBAYARAN RESMI (MATCHING REFERENCE) -->
+    <section id="rekening" class="py-12 bg-white border-y border-gray-200 mt-8">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gradient-to-br from-brand-navy to-brand-blue rounded-3xl p-6 sm:p-8 text-white shadow-xl relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 opacity-10 text-white pointer-events-none">
+                    <i class="fa-solid fa-vault text-[160px]"></i>
+                </div>
+                
+                <div class="relative z-10">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-white/20">
+                        <div>
+                            <span class="bg-brand-yellow text-brand-navy font-fun font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">
+                                <i class="fa-solid fa-shield-halved mr-1"></i> Pembayaran Resmi & Terpercaya
+                            </span>
+                            <h2 class="text-xl sm:text-3xl font-fun font-bold mt-2">Informasi Rekening Reservasi</h2>
+                            <p class="text-gray-200 text-xs sm:text-sm mt-1">Gunakan nomor rekening resmi di bawah ini untuk konfirmasi DP atau pelunasan paket tour.</p>
+                        </div>
+                        <div class="flex-shrink-0 hidden sm:block">
+                            <div class="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center text-2xl text-brand-yellow border border-white/20">
+                                <i class="fa-solid fa-building-columns"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-5">
+                        <!-- Kartu Rekening -->
+                        <div class="bg-white/10 backdrop-blur-md p-5 rounded-2xl border border-white/20 flex flex-col justify-between">
+                            <div>
+                                <p class="text-xs text-brand-yellow font-bold uppercase tracking-wider mb-1">Nomor Rekening / Transfer Bank</p>
+                                <p id="rek-number" class="text-2xl sm:text-3xl font-fun font-bold tracking-wider text-white select-all">901945335968</p>
+                                <p class="text-xs sm:text-sm text-gray-200 mt-2"><i class="fa-solid fa-user-check text-green-400 mr-1"></i> atas nama <b>Syadad Nabil Mudzafar</b></p>
+                            </div>
+                            <button type="button" onclick="copyRekening()" class="mt-4 w-full bg-brand-yellow hover:bg-yellow-400 text-brand-navy font-fun font-bold py-2.5 px-4 rounded-xl text-xs sm:text-sm transition flex items-center justify-center gap-2">
+                                <i id="copy-icon" class="fa-regular fa-copy"></i> <span id="copy-text">Salin Nomor Rekening</span>
+                            </button>
+                        </div>
+
+                        <!-- Kartu Kontak Confirm -->
+                        <div class="bg-white/10 backdrop-blur-md p-5 rounded-2xl border border-white/20 flex flex-col justify-between">
+                            <div>
+                                <p class="text-xs text-brand-yellow font-bold uppercase tracking-wider mb-1">Konfirmasi Pembayaran WhatsApp</p>
+                                <p class="text-xl sm:text-2xl font-fun font-bold text-white">0857-8008-5291</p>
+                                <p class="text-xs sm:text-sm text-gray-200 mt-2"><i class="fa-solid fa-clock text-brand-yellow mr-1"></i> Layanan CS 24/7 Fast Response</p>
+                            </div>
+                            <a href="https://wa.me/6285780085291?text=Halo%20Petualang%20Pangandaran,%20saya%20sudah%20transfer%20ke%20rekening%20901945335968%20a.n.%20Syadad%20Nabil%20Mudzafar" 
+                               target="_blank" rel="noopener noreferrer" 
+                               class="mt-4 w-full bg-emerald-500 hover:bg-emerald-600 text-white font-fun font-bold py-2.5 px-4 rounded-xl text-xs sm:text-sm transition flex items-center justify-center gap-2">
+                                <i class="fa-brands fa-whatsapp text-lg"></i> Kirim Bukti Transfer
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- CUSTOM MESSAGE BOX (MODAL) INSTEAD OF ALERT() -->
     <div id="customModal" class="fixed inset-0 z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
         <!-- Backdrop -->
-        <div class="absolute inset-0 bg-brand-navy/60 backdrop-blur-sm" onclick="closeModal()"></div>
+        <div class="absolute inset-0 bg-brand-navy/70 backdrop-blur-md" onclick="closeModal()"></div>
         
         <!-- Modal Content -->
-        <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-sm w-full mx-4 relative z-10 transform scale-95 transition-transform duration-300 shadow-2xl" id="modalContent">
-            <div class="w-16 h-16 bg-red-100 text-brand-red rounded-full flex items-center justify-center text-3xl mx-auto mb-4">
+        <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-sm w-full mx-4 relative z-10 transform scale-95 transition-transform duration-300 shadow-2xl border border-slate-100" id="modalContent">
+            <div class="w-16 h-16 bg-red-100 text-brand-red rounded-2xl flex items-center justify-center text-3xl mx-auto mb-4 shadow-sm">
                 <i class="fa-solid fa-circle-exclamation"></i>
             </div>
-            <h3 class="text-2xl font-fun font-bold text-center text-brand-navy mb-2">Opss.. Tunggu Dulu!</h3>
-            <p id="modalMessage" class="text-center text-gray-600 mb-6 leading-relaxed">Silakan lengkapi semua kolom yang wajib diisi ya.</p>
-            <button onclick="closeModal()" class="w-full bg-brand-navy text-white font-bold py-3 rounded-xl hover:bg-blue-900 transition font-fun text-lg">
+            <h3 class="text-2xl font-fun font-bold text-center text-brand-navy mb-2">Opss.. Sedikit Lagi!</h3>
+            <p id="modalMessage" class="text-center text-slate-600 text-sm mb-6 leading-relaxed">Silakan lengkapi kolom nama & asal kota terlebih dahulu ya kak.</p>
+            <button type="button" onclick="closeModal()" class="w-full bg-brand-navy hover:bg-slate-800 text-white font-fun font-bold py-3.5 rounded-xl transition text-base shadow-md">
                 Siap, Lengkapi Sekarang!
             </button>
         </div>
     </div>
 
-    <!-- FOOTER LENGKAP SAMA DENGAN HALAMAN REFERENSI -->
-    <footer class="bg-brand-navy text-white pt-16 pb-8 border-t-8 border-brand-yellow mt-auto">
+    <!-- FOOTER LENGKAP PETUALANG PANGANDARAN (EXACT MATCHING REFERENCE) -->
+    <footer class="bg-brand-navy text-white pt-14 pb-8 border-t-8 border-brand-yellow mt-auto">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-gray-800">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 sm:gap-10 pb-12 border-b border-white/10">
                 
-                <!-- Kolom Logo & Deskripsi Footer -->
+                <!-- Kolom 1: Dual Logo & Deskripsi Footer -->
                 <div class="md:col-span-1">
                     <div class="flex items-center gap-2 mb-4">
+                        <img src="logo-pangandaran.png" 
+                             alt="Logo Kab. Pangandaran" 
+                             class="h-8 w-auto object-contain"
+                             onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Lambang_Kabupaten_Pangandaran.png/480px-Lambang_Kabupaten_Pangandaran.png';">
+                        <div class="h-6 w-[1px] bg-gray-600"></div>
                         <img src="img3.png" 
-                             alt="Petualang Pangandaran Footer Logo" 
-                             class="h-16 w-auto bg-white/10 p-2 rounded-2xl backdrop-blur-sm object-contain"
-                             onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'font-fun font-bold text-xl text-white\'>PETUALANG <span class=\'text-brand-red\'>PANGANDARAN</span></div>';">
+                             alt="Logo Petualang Pangandaran" 
+                             class="h-10 w-auto object-contain"
+                             onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'w-9 h-9 rounded-xl bg-brand-yellow text-brand-navy flex items-center justify-center font-fun font-bold text-lg\'><i class=\'fa-solid fa-compass\'></i></div>';">
                     </div>
-                    <p class="text-gray-300 text-sm leading-relaxed mb-6">
+                    <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mb-6">
                         <b>Petualang Pangandaran</b> adalah penyedia jasa trip & wisata alam terpercaya. Nikmati momen seru jelajah destinasi impianmu bersama kami!
                     </p>
                     <div class="flex space-x-3">
-                        <a href="#" aria-label="Instagram Petualang Pangandaran" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-red transition"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#" aria-label="TikTok Petualang Pangandaran" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-red transition"><i class="fa-brands fa-tiktok"></i></a>
-                        <a href="#" aria-label="Facebook Petualang Pangandaran" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-red transition"><i class="fa-brands fa-facebook"></i></a>
-                        <a href="#" aria-label="YouTube Petualang Pangandaran" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-red transition"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="https://instagram.com" target="_blank" aria-label="Instagram" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-red transition text-sm"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://tiktok.com" target="_blank" aria-label="TikTok" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-red transition text-sm"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="https://facebook.com" target="_blank" aria-label="Facebook" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-red transition text-sm"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="https://youtube.com" target="_blank" aria-label="YouTube" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-red transition text-sm"><i class="fa-brands fa-youtube"></i></a>
                     </div>
                 </div>
 
-                <!-- Navigasi Cepat -->
+                <!-- Navigasi Cepat & Beranda -->
                 <div>
-                    <h4 class="font-fun font-bold text-lg text-brand-yellow mb-4">Aktivitas Seru</h4>
-                    <ul class="space-y-2 text-sm text-gray-300">
-                        <li><a href="#" class="hover:text-brand-yellow transition">Body Rafting Citumang</a></li>
-                        <li><a href="#" class="hover:text-brand-yellow transition">Sewa Perahu Sunset</a></li>
-                        <li><a href="#" class="hover:text-brand-yellow transition">Body Rafting Green Canyon</a></li>
-                        <li><a href="#" class="hover:text-brand-yellow transition">Paket Family Gathering</a></li>
-                        <li><a href="#" class="hover:text-brand-yellow transition">Camping Pantai Eksotis</a></li>
+                    <h4 class="font-fun font-bold text-base text-brand-yellow mb-4">Navigasi Utama</h4>
+                    <ul class="space-y-2 text-xs sm:text-sm text-slate-300">
+                        <li><a href="https://petualangpangandaran.github.io/Beranda#destinasi" class="hover:text-brand-yellow transition flex items-center gap-2"><i class="fa-solid fa-angle-right text-[10px] text-brand-yellow"></i> Body Rafting Citumang</a></li>
+                        <li><a href="https://petualangpangandaran.github.io/Beranda#destinasi" class="hover:text-brand-yellow transition flex items-center gap-2"><i class="fa-solid fa-angle-right text-[10px] text-brand-yellow"></i> Sewa Perahu Sunset</a></li>
+                        <li><a href="https://petualangpangandaran.github.io/Beranda#destinasi" class="hover:text-brand-yellow transition flex items-center gap-2"><i class="fa-solid fa-angle-right text-[10px] text-brand-yellow"></i> Body Rafting Green Canyon</a></li>
+                        <li><a href="https://petualangpangandaran.github.io/Beranda#paket" class="hover:text-brand-yellow transition flex items-center gap-2"><i class="fa-solid fa-angle-right text-[10px] text-brand-yellow"></i> Paket Family Gathering</a></li>
+                        <li><a href="https://petualangpangandaran.github.io/Beranda#paket" class="hover:text-brand-yellow transition flex items-center gap-2"><i class="fa-solid fa-angle-right text-[10px] text-brand-yellow"></i> Camping Pantai Eksotis</a></li>
                     </ul>
                 </div>
 
                 <!-- Informasi Wisata & Pembayaran -->
                 <div>
-                    <h4 class="font-fun font-bold text-lg text-brand-yellow mb-4">Info Pembayaran</h4>
-                    <ul class="space-y-2 text-sm text-gray-300">
-                        <li><span class="font-semibold text-white">Rekening: 901945335968</span></li>
+                    <h4 class="font-fun font-bold text-base text-brand-yellow mb-4">Info Pembayaran</h4>
+                    <ul class="space-y-2 text-xs sm:text-sm text-slate-300">
+                        <li><span class="font-semibold text-white">SeaBank</span></li>
+                        <li><span class="text-brand-yellow font-semibold">Rekening: 901945335968</span></li>
                         <li><span>a.n. Syadad Nabil Mudzafar</span></li>
-                        <li><a href="#" class="hover:text-brand-yellow transition">Harga Tiket Masuk 2026</a></li>
-                        <li><a href="#" class="hover:text-brand-yellow transition">Tips Safety Body Rafting</a></li>
-                        <li><a href="#" class="hover:text-brand-yellow transition">Syarat & Ketentuan DP</a></li>
+                        <li><a href="https://wa.me/6285780085291" target="_blank" class="hover:text-brand-yellow transition">Syarat & Ketentuan DP Tour</a></li>
                     </ul>
                 </div>
 
                 <!-- Kontak Reservasi & Alamat Basecamp -->
                 <div>
-                    <h4 class="font-fun font-bold text-lg text-brand-yellow mb-4">Basecamp & Kontak</h4>
-                    <div class="space-y-3 text-sm text-gray-300">
+                    <h4 class="font-fun font-bold text-base text-brand-yellow mb-4">Basecamp & Kontak</h4>
+                    <div class="space-y-3 text-xs sm:text-sm text-slate-300">
                         <p class="flex items-start gap-2">
                             <i class="fa-solid fa-location-dot text-brand-red mt-1 flex-shrink-0"></i>
-                            <span>Dusun cikanyere, RT./Rw/RW.01/07, Parakanmanggu, Kec. Parigi, Kab. Pangandaran, Jawa Barat 46393</span>
+                            <span>Dusun Cikanyere, RT.01/RW.07, Parakanmanggu, Kec. Parigi, Kab. Pangandaran, Jawa Barat 46393</span>
                         </p>
                         <p class="flex items-center gap-2">
-                            <i class="fa-brands fa-whatsapp text-green-400 text-base flex-shrink-0"></i>
-                            <a href="https://wa.me/6285780085291" class="hover:underline font-bold text-white">0857-8008-5291</a>
-                        </p>
-                        <p class="flex items-center gap-2">
-                            <i class="fa-solid fa-credit-card text-brand-yellow flex-shrink-0"></i>
-                            <span>901945335968 (Syadad Nabil Mudzafar)</span>
+                            <i class="fa-brands fa-whatsapp text-emerald-400 text-base flex-shrink-0"></i>
+                            <a href="https://wa.me/6285780085291" target="_blank" class="hover:underline font-bold text-white">0857-8008-5291</a>
                         </p>
                         <p class="flex items-center gap-2">
                             <i class="fa-regular fa-envelope text-brand-yellow flex-shrink-0"></i>
@@ -316,7 +742,7 @@
             </div>
 
             <!-- Copyright -->
-            <div class="pt-8 text-center text-xs text-gray-400">
+            <div class="pt-8 text-center text-xs text-slate-400 flex justify-center items-center">
                 <p>&copy; 2026 <b>Petualang Pangandaran</b> - Teman Seru Jelajah Destinasimu. All Rights Reserved.</p>
             </div>
         </div>
@@ -324,22 +750,147 @@
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
-        // Set minimal tanggal ke hari ini
-        const today = new Date().toISOString().split('T')[0];
-        document.getElementById("tanggal").setAttribute('min', today);
+        // Set minimum date to today
+        const todayStr = new Date().toISOString().split('T')[0];
+        const dateInput = document.getElementById("tanggal");
+        if (dateInput) {
+            dateInput.setAttribute('min', todayStr);
+            // Default to tomorrow
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            dateInput.value = tomorrow.toISOString().split('T')[0];
+        }
 
-        // Fungsi untuk tombol plus/minus jumlah orang
+        // Current Active Destination State
+        let selectedPricePerPerson = 85000;
+        let pricingMode = 'per_person';
+
+        function selectDestination(cardElement) {
+            // Remove selected state from all cards
+            const cards = document.querySelectorAll('.card-option');
+            cards.forEach(card => {
+                card.classList.remove('selected');
+                const badge = card.querySelector('.check-badge');
+                if (badge) {
+                    badge.classList.add('opacity-0', 'scale-50');
+                    badge.classList.remove('opacity-100', 'scale-100');
+                }
+            });
+
+            // Trigger animation restart smoothly
+            cardElement.style.animation = 'none';
+            cardElement.offsetHeight; /* trigger reflow */
+            cardElement.style.animation = null;
+
+            // Mark clicked card as selected
+            cardElement.classList.add('selected');
+            const clickedBadge = cardElement.querySelector('.check-badge');
+            if (clickedBadge) {
+                clickedBadge.classList.remove('opacity-0', 'scale-50');
+                clickedBadge.classList.add('opacity-100', 'scale-100');
+            }
+
+            // Haptic feedback (vibration on mobile device if supported)
+            if (navigator.vibrate) {
+                navigator.vibrate(35);
+            }
+
+            // Sync hidden form input & pricing info
+            const val = cardElement.getAttribute('data-value');
+            const price = parseInt(cardElement.getAttribute('data-price')) || 0;
+            pricingMode = cardElement.getAttribute('data-pricing-mode') || 'per_person';
+
+            document.getElementById('destinasi').value = val;
+            selectedPricePerPerson = price;
+
+            updateSummary();
+        }
+
+        function setQuickDate(type) {
+            const now = new Date();
+            if (type === 'weekend') {
+                // Find next Saturday
+                const dayOfWeek = now.getDay();
+                const distanceToSaturday = (6 - dayOfWeek + 7) % 7 || 7;
+                now.setDate(now.getDate() + distanceToSaturday);
+            } else if (typeof type === 'number') {
+                now.setDate(now.getDate() + type);
+            }
+            if (dateInput) {
+                dateInput.value = now.toISOString().split('T')[0];
+            }
+            updateSummary();
+        }
+
         function ubahJumlah(nilai) {
             const inputJumlah = document.getElementById('jumlah');
-            let jumlahSaatIni = parseInt(inputJumlah.value) || 0;
+            let jumlahSaatIni = parseInt(inputJumlah.value) || 1;
             let jumlahBaru = jumlahSaatIni + nilai;
             
             if (jumlahBaru >= 1) {
                 inputJumlah.value = jumlahBaru;
+                updateSummary();
             }
         }
 
-        // Fungsi Modal (Pengganti Alert)
+        function setJumlah(val) {
+            document.getElementById('jumlah').value = val;
+            updateSummary();
+        }
+
+        function updateSummary() {
+            const nama = document.getElementById('nama').value.trim();
+            const destinasi = document.getElementById('destinasi').value;
+            const tanggal = document.getElementById('tanggal').value;
+            const durasi = document.getElementById('durasi').value;
+            const jumlah = parseInt(document.getElementById('jumlah').value) || 1;
+
+            // Summary Text Elements
+            document.getElementById('summaryNama').textContent = nama || "Belum diisi";
+            document.getElementById('summaryDestinasi').textContent = destinasi;
+
+            // Date Format
+            let formattedDate = "-";
+            if (tanggal) {
+                const dateObj = new Date(tanggal);
+                if (!isNaN(dateObj)) {
+                    formattedDate = dateObj.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
+                }
+            }
+            document.getElementById('summaryDetail').textContent = `${formattedDate} • ${jumlah} Orang (${durasi.split(' ')[0]} ${durasi.split(' ')[1] || ''})`;
+
+            // Addons calculation & list
+            const addonsArr = [];
+            if (document.getElementById('addonGopro').checked) addonsArr.push("GoPro");
+            if (document.getElementById('addonMakan').checked) addonsArr.push("Makan Liwet");
+            if (document.getElementById('addonPenginapan').checked) addonsArr.push("Homestay");
+            if (document.getElementById('addonTransport').checked) addonsArr.push("Antar-Jemput");
+
+            document.getElementById('summaryAddons').textContent = addonsArr.length > 0 ? addonsArr.join(', ') : 'Tidak ada';
+
+            // Price calculation
+            let totalPrice = 0;
+            if (pricingMode === 'flat') {
+                totalPrice = selectedPricePerPerson; // Flat per boat
+            } else {
+                totalPrice = selectedPricePerPerson * jumlah;
+            }
+
+            // Display formatted price
+            const priceElement = document.getElementById('summaryPrice');
+            if (selectedPricePerPerson === 0) {
+                priceElement.textContent = "Nego / Sesuai Request";
+            } else {
+                priceElement.textContent = "Rp " + totalPrice.toLocaleString('id-ID');
+            }
+
+            // Save state to localStorage for auto-restore
+            try {
+                const state = { nama, asalKota: document.getElementById('asalKota').value };
+                localStorage.setItem('petualang_booking_draft', JSON.stringify(state));
+            } catch(e) {}
+        }
+
         const modal = document.getElementById('customModal');
         const modalContent = document.getElementById('modalContent');
         const modalMessage = document.getElementById('modalMessage');
@@ -347,7 +898,6 @@
         function showModal(message) {
             modalMessage.textContent = message;
             modal.classList.remove('hidden');
-            // Sedikit delay agar transisi terlihat
             setTimeout(() => {
                 modal.classList.remove('opacity-0');
                 modalContent.classList.remove('scale-95');
@@ -364,9 +914,31 @@
             }, 300);
         }
 
-        // Fungsi mengumpulkan data dan kirim ke WhatsApp
+        function copyRekening() {
+            const rekText = "901945335968";
+            
+            // Clipboard copy via execCommand fallback
+            const tempInput = document.createElement("input");
+            tempInput.value = rekText;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+
+            const copyText = document.getElementById('copy-text');
+            const copyIcon = document.getElementById('copy-icon');
+            
+            if (copyText && copyIcon) {
+                copyText.textContent = "Berhasil Disalin!";
+                copyIcon.className = "fa-solid fa-check text-green-700";
+                setTimeout(() => {
+                    copyText.textContent = "Salin Nomor Rekening";
+                    copyIcon.className = "fa-regular fa-copy";
+                }, 2000);
+            }
+        }
+
         function kirimKeWhatsApp() {
-            // Ambil Nilai dari Form
             const nama = document.getElementById('nama').value.trim();
             const asalKota = document.getElementById('asalKota').value.trim();
             const destinasi = document.getElementById('destinasi').value;
@@ -375,47 +947,72 @@
             const jumlah = document.getElementById('jumlah').value;
             const catatan = document.getElementById('catatan').value.trim();
 
-            // Validasi Sederhana
-            if (!nama || !asalKota || !destinasi || !tanggal || !durasi || !jumlah) {
-                showModal("Halo Kak! Mohon pastikan semua kolom bertanda bintang merah (*) sudah diisi ya, agar kami bisa memberikan informasi yang akurat.");
+            // Validation Check
+            if (!nama || !asalKota) {
+                showModal("Halo Kak! Mohon isi Nama Lengkap dan Asal Kota terlebih dahulu ya agar tim kami bisa menyapa dengan ramah.");
                 return;
             }
 
-            // Format Tanggal (Opsional biar lebih rapi)
+            if (!tanggal) {
+                showModal("Mohon tentukan tanggal keberangkatan liburan Anda ya kak.");
+                return;
+            }
+
+            // Addons check
+            const addonsArr = [];
+            if (document.getElementById('addonGopro').checked) addonsArr.push("📸 Dokumentasi GoPro");
+            if (document.getElementById('addonMakan').checked) addonsArr.push("🍱 Makan Siang Sunda/Seafood");
+            if (document.getElementById('addonPenginapan').checked) addonsArr.push("🏠 Rekomendasi Homestay");
+            if (document.getElementById('addonTransport').checked) addonsArr.push("🚐 Antar-Jemput Stasiun/Terminal");
+
+            // Format Date
             const dateObj = new Date(tanggal);
             const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
             const tanggalFormat = dateObj.toLocaleDateString('id-ID', options);
 
-            // Menyusun Pesan
+            // Construct WhatsApp Message Payload
             let pesan = `Halo *Petualang Pangandaran*! 🌴\n`;
-            pesan += `Saya ingin booking / konsultasi paket liburan dengan detail berikut:\n\n`;
-            pesan += `👤 *Nama:* ${nama}\n`;
+            pesan += `Saya mau konsultasi / booking trip liburan via website:\n\n`;
+            pesan += `👤 *Nama Pemesan:* ${nama}\n`;
             pesan += `🏙️ *Asal Kota:* ${asalKota}\n`;
-            pesan += `📍 *Destinasi/Paket:* ${destinasi}\n`;
+            pesan += `📍 *Wahana / Paket:* ${destinasi}\n`;
             pesan += `🗓️ *Tgl Keberangkatan:* ${tanggalFormat}\n`;
             pesan += `⏱️ *Estimasi Waktu:* ${durasi}\n`;
-            pesan += `👥 *Jumlah Wisatawan:* ${jumlah} Orang\n\n`;
+            pesan += `👥 *Jumlah Rombongan:* ${jumlah} Orang\n`;
+            
+            if (addonsArr.length > 0) {
+                pesan += `✨ *Layanan Tambahan:*\n`;
+                addonsArr.forEach(item => pesan += ` • ${item}\n`);
+            }
             
             if (catatan) {
-                pesan += `📝 *Catatan / Konsultasi Penyesuaian:*\n_${catatan}_\n\n`;
-            } else {
-                pesan += `📝 *Catatan:* - \n\n`;
+                pesan += `\n📝 *Catatan / Permintaan Khusus:*\n_${catatan}_\n`;
             }
 
-            pesan += `Mohon dibantu info ketersediaan dan penawaran harganya ya. Terima kasih! ✨`;
+            pesan += `\nMohon diinfokan jadwal ketersediaan dan rincian penawaran terbaiknya ya. Terima kasih! 🙏`;
 
-            // Encode pesan untuk URL
+            // Encode payload
             const urlEncodedPesan = encodeURIComponent(pesan);
-            
-            // Nomor WhatsApp Admin (Sesuai dengan yang ada di website utama)
             const noWA = "6285780085291";
-            
-            // Buat URL dan Buka Tab Baru
             const waLink = `https://wa.me/${noWA}?text=${urlEncodedPesan}`;
             
-            // Buka WhatsApp
+            // Open WhatsApp Tab
             window.open(waLink, '_blank');
         }
+
+        // Restore saved draft input if any
+        window.addEventListener('DOMContentLoaded', () => {
+            try {
+                const saved = localStorage.getItem('petualang_booking_draft');
+                if (saved) {
+                    const data = JSON.parse(saved);
+                    if (data.nama) document.getElementById('nama').value = data.nama;
+                    if (data.asalKota) document.getElementById('asalKota').value = data.asalKota;
+                }
+            } catch(e) {}
+            
+            updateSummary();
+        });
     </script>
 </body>
 </html>
